@@ -1,0 +1,2 @@
+# README
+School journal application
