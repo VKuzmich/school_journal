@@ -3,12 +3,13 @@
 en:
   devise:
     confirmations:
+      new:
+        resend_confirmation_instructions: "Resend confirmation instructions"
+        email: "email"
+        page_title: 'Resend confirmation instructions'
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
-      resend_confirmation_instructions: "Resend confirmation instructions"
-      email: "email"
-      page_title: 'Resend confirmation instructions'
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account is not activated yet."
@@ -51,18 +52,19 @@ en:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
     passwords:
+      edit:
+        page_title: 'Change your password'
+        new_password: "New password"
+        confirm_new_password: "Confirm new password"
+        change_my_password: "Change my password"
+      new:
+        forgot_your_password_title: 'Forgot your password?'
+        send_password_instructions: "Send me reset password instructions"
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
       send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
-      page_title: 'Change your password'
-      new_password: "New password"
-      confirm_new_password: "Confirm new password"
-      change_my_password: "Change my password"
-      forgot_your_password_title: 'Forgot your password?'
-      send_password_instructions: "Send me reset password instructions"
-
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
@@ -72,32 +74,40 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address."
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again"
-      page_title: 'Edit'
-      waiting_confirmation: 'Currently waiting confirmation for:'
-      leave_it_blank: 'leave blank if you do not want to change it'
-      need_your_current_password: 'we need your current password to confirm your changes'
-      update_button: "Update"
-      cancel_my_account: "Cancel my account"
-      back_button: "Back"
-      are_you_sure: "Are you sure?"
-      sign_up_page_title: 'Sign up'
-      sign_up_button: "Sign up"
+      edit:
+        page_title: 'Edit'
+        waiting_confirmation: 'Currently waiting confirmation for:'
+        leave_it_blank: 'leave blank if you do not want to change it'
+        need_your_current_password: 'we need your current password to confirm your changes'
+        update_button: "Update"
+        cancel_my_account: "Cancel my account"
+        cancel_title: 'Cancel my account'
+        unhappy_question: "Unhappy?"
+        back_button: "Back"
+        are_you_sure: "Are you sure?"
+      new:
+        sign_up_page_title: 'Sign up'
+        sign_up_button: "Sign up"
     sessions:
-      login_page_title: 'Log in'
+      new:
+        login_page_title: 'Log in'
+        login_button: "Log in"
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
-      login_button: "Log in"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
-      page_title: 'Resend unlock instructions'
-      resend_unlock_instructions: "Resend unlock instructions"
+      new:
+        page_title: 'Resend unlock instructions'
+        resend_unlock_instructions: "Resend unlock instructions"
     shared:
-      forgot_your_password: "Forgot your password?"
-      did_not_recieve_instructions: "Didn't receive confirmation instructions?"
-      did_not_recieve_unlock_instructions: "Didn't receive unlock instructions?"
+      links:
+        forgot_your_password: "Forgot your password?"
+        did_not_recieve_instructions: "Didn't receive confirmation instructions?"
+        did_not_recieve_unlock_instructions: "Didn't receive unlock instructions?"
+        passwords: 'passwords'
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"
