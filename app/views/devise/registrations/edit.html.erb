@@ -1,20 +1,20 @@
-<h2><%= t '.page_title'%> <%= resource_name.to_s.humanize %></h2>
+<h2><%= t('.page_title')%> <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: t(".email") %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div><%= t '.waiting_confirmation'%><%= resource.unconfirmed_email %></div>
+    <div><%= t('.waiting_confirmation')%><%= resource.unconfirmed_email %></div>
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(<%= t '.leave_it_blank'%>)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.label :password %> <i>(<%= t('.leave_it_blank')%>)</i><br />
+    <%= f.password_field :password, autocomplete: t(".new_password") %>
     <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> characters minimum</em>
@@ -23,23 +23,23 @@
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: t(".new_password") %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(<%= t '.need_your_current_password'%>)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <%= f.label :current_password %> <i>(<%= t('.need_your_current_password')%>)</i><br />
+    <%= f.password_field :current_password, autocomplete: t(".current_password") %>
   </div>
 
   <div class="actions">
-    <%= f.submit(t '.update_button')%>
+    <%= f.submit t('.update_button')%>
   </div>
 <% end %>
 
 <h3><%= t '.cancel_title'%></h3>
 
-<p><%= t '.unhappy_question'%> <%= button_to (t '.cancel_my_account'),
+<p><%= t '.unhappy_question'%> <%= button_to t('.cancel_my_account'),
                                              registration_path(resource_name),
-                                             data: { confirm: (t '.are_you_sure') }, method: :delete %></p>
+                                             data: { confirm: t('.are_you_sure') }, method: :delete %></p>
 
-<%= link_to (t '.back_button'), :back %>
+<%= link_to t('.back_button'), :back %>

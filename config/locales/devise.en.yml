@@ -57,7 +57,9 @@ en:
         new_password: "New password"
         confirm_new_password: "Confirm new password"
         change_my_password: "Change my password"
+        new-password: "new-password"
       new:
+        email: "email"
         forgot_your_password_title: 'Forgot your password?'
         send_password_instructions: "Send me reset password instructions"
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
@@ -85,13 +87,20 @@ en:
         unhappy_question: "Unhappy?"
         back_button: "Back"
         are_you_sure: "Are you sure?"
+        new_password: "new-password"
+        current_password: "current-password"
+        email: "email"
       new:
         sign_up_page_title: 'Sign up'
         sign_up_button: "Sign up"
+        email: 'email'
+        new_password: "new-password"
     sessions:
       new:
         login_page_title: 'Log in'
         login_button: "Log in"
+        email: "email"
+        current_password: "current-password"
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
@@ -102,6 +111,7 @@ en:
       new:
         page_title: 'Resend unlock instructions'
         resend_unlock_instructions: "Resend unlock instructions"
+        email: "email"
     shared:
       links:
         forgot_your_password: "Forgot your password?"
