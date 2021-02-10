@@ -36,9 +36,9 @@
   </div>
 <% end %>
 
-<h3><%= t '.cancel_my_account_title'%></h3>
+<h3><%= t('.cancel_my_account_title')%></h3>
 
-<p><%= t '.unhappy_question'%> <%= button_to t('.cancel_my_account'),
+<p><%= t('.unhappy_question')%> <%= button_to t('.cancel_my_account'),
                                              registration_path(resource_name),
                                              data: { confirm: t('.are_you_sure') }, method: :delete %></p>
 
