@@ -58,6 +58,7 @@ en:
         confirm_new_password: "Confirm new password"
         change_my_password: "Change my password"
         new-password: "new-password"
+        characters_minimum: 'characters minimum'
       new:
         email: "email"
         forgot_your_password_title: 'Forgot your password?'
@@ -83,13 +84,14 @@ en:
         need_your_current_password: 'we need your current password to confirm your changes'
         update_button: "Update"
         cancel_my_account: "Cancel my account"
-        cancel_title: 'Cancel my account'
+        cancel_my_account_title: 'Cancel my account'
         unhappy_question: "Unhappy?"
         back_button: "Back"
         are_you_sure: "Are you sure?"
         new_password: "new-password"
         current_password: "current-password"
         email: "email"
+        characters_minimum: 'characters minimum'
       new:
         sign_up_page_title: 'Sign up'
         sign_up_button: "Sign up"
