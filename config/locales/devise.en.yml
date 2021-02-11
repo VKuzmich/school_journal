@@ -3,6 +3,10 @@
 en:
   devise:
     confirmations:
+      new:
+        resend_confirmation_instructions: "Resend confirmation instructions"
+        email: "email"
+        page_title: 'Resend confirmation instructions'
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
@@ -18,19 +22,47 @@ en:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
+        confirm_my_account: 'Confirm my account'
         subject: "Confirmation instructions"
+        page_title: "Welcome"
+        you_can_confirm_email: 'You can confirm your account email through the link below:'
       reset_password_instructions:
         subject: "Reset password instructions"
+        hello: 'Hello'
+        text_instructions: 'Someone has requested a link to change your password. You can do this through the link below.'
+        change_my_password: 'Change my password'
+        ignore_if_not_requested: 'If you did not request this, please ignore this email.'
+        your_password_not_changed_until_requested: 'Your password will not change until you access the link above and create a new one.'
       unlock_instructions:
         subject: "Unlock instructions"
+        hello: 'Hello'
+        your_account_locked: 'Your account has been locked due to an excessive number of unsuccessful sign in attempts.'
+        click_link_to_unlock: 'Click the link below to unlock your account:'
+        link_to_unlock: 'Unlock my account'
       email_changed:
         subject: "Email Changed"
+        hello: 'Hello'
+        we_are_contacting_you: "We're contacting you to notify you that your email is being changed to"
+        email_has_been_changed: "We're contacting you to notify you that your email has been changed to"
       password_change:
         subject: "Password Changed"
+        hello: 'Hello'
+        we_are_contacting_you: 'We are contacting you to notify you that your password has been changed.'
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
     passwords:
+      edit:
+        page_title: 'Change your password'
+        new_password: "New password"
+        confirm_new_password: "Confirm new password"
+        change_my_password: "Change my password"
+        new-password: "new-password"
+        characters_minimum: 'characters minimum'
+      new:
+        email: "email"
+        forgot_your_password_title: 'Forgot your password?'
+        send_password_instructions: "Send me reset password instructions"
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
       send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
@@ -45,7 +77,32 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address."
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again"
+      edit:
+        page_title: 'Edit'
+        waiting_confirmation: 'Currently waiting confirmation for:'
+        leave_it_blank: 'leave blank if you do not want to change it'
+        need_your_current_password: 'we need your current password to confirm your changes'
+        update_button: "Update"
+        cancel_my_account: "Cancel my account"
+        cancel_my_account_title: 'Cancel my account'
+        unhappy_question: "Unhappy?"
+        back_button: "Back"
+        are_you_sure: "Are you sure?"
+        new_password: "new-password"
+        current_password: "current-password"
+        email: "email"
+        characters_minimum: 'characters minimum'
+      new:
+        sign_up_page_title: 'Sign up'
+        sign_up_button: "Sign up"
+        email: 'email'
+        new_password: "new-password"
     sessions:
+      new:
+        login_page_title: 'Log in'
+        login_button: "Log in"
+        email: "email"
+        current_password: "current-password"
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
@@ -53,6 +110,16 @@ en:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+      new:
+        page_title: 'Resend unlock instructions'
+        resend_unlock_instructions: "Resend unlock instructions"
+        email: "email"
+    shared:
+      links:
+        forgot_your_password: "Forgot your password?"
+        did_not_recieve_instructions: "Didn't receive confirmation instructions?"
+        did_not_recieve_unlock_instructions: "Didn't receive unlock instructions?"
+        passwords: 'passwords'
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"
