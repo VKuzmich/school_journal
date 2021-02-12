@@ -1,10 +1,10 @@
 <div class="form-group col">
-  <div class="form-group justify-content-md-center">
-    <p class="form-group offset-3 col-6"><%= t('.hello')%> <%= @email %>!</p>
+  <div class="form-group justify-content-md-center offset-3 col-6">
+    <p><%= t('.hello')%> <%= @email %>!</p>
     <% if @resource&.unconfirmed_email? %>
-      <p class="form-group offset-3 col-6"><%= t('.we_are_contacting_you')%> <%= @resource.unconfirmed_email %>.</p>
+      <p><%= t('.we_are_contacting_you')%> <%= @resource.unconfirmed_email %>.</p>
     <% else %>
-      <p class="form-group offset-3 col-6"><%= t('.email_has_been_changed')%>
+      <p><%= t('.email_has_been_changed')%>
         <%= @resource.email %>.</p>
     <% end %>
       </div>

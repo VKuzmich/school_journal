@@ -1,15 +1,15 @@
 <div class="form-group col">
-  <div class="form-group justify-content-md-center">
-    <h2 class="form-group offset-3 col-6"><%= t('.page_title')%> <%= resource_name.to_s.humanize %></h2>
+  <div class="form-group justify-content-md-center offset-3 col-6">
+    <h2><%= t('.page_title')%> <%= resource_name.to_s.humanize %></h2>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="form-group offset-3 col-6">
+        <div>
           <%= f.email_field :email, class: 'form-control', placeholder: t(".email") %>
         </div>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div><%= t('.waiting_confirmation')%><%= resource.unconfirmed_email %></div>
         <% end %>
-        <div class="form-group offset-3 col-6">
+        <div>
           <%= f.label :password %> <i>(<%= t('.leave_it_blank')%>)</i><br />
           <%= f.password_field :password, class: 'form-control', placeholder: t(".new_password") %>
           <% if @minimum_password_length %>
@@ -17,20 +17,20 @@
             <em><%= @minimum_password_length %> <%= t('.characters_minimum')%></em>
           <% end %>
         </div>
-        <div class="form-group offset-3 col-6">
+        <div>
           <%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, class: 'form-control', placeholder: t(".new_password") %>
         </div>
-        <div class="form-group offset-3 col-6">
+        <div>
           <%= f.label :current_password %> <i>(<%= t('.need_your_current_password')%>)</i><br />
           <%= f.password_field :current_password, class: 'form-control', placeholder: t(".current_password") %>
         </div>
-        <div class="actions offset-3 col-6">
+        <div>
           <%= f.submit t('.update_button'), class: "btn btn-primary" %>
         </div>
       <% end %>
-      <h3 class="form-group offset-3 col-6"><%= t('.cancel_my_account_title')%></h3>
-      <p class="form-group offset-3 col-6"><%= t('.unhappy_question')%>
+      <h3><%= t('.cancel_my_account_title')%></h3>
+      <p><%= t('.unhappy_question')%>
         <%= button_to t('.cancel_my_account'),
                         registration_path(resource_name),
                         data: { confirm: t('.are_you_sure') }, method: :delete %></p>
