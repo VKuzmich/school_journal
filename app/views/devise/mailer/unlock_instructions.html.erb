@@ -1,7 +1,9 @@
-<p><%= t('.hello')%><%= @resource.email %>!</p>
-
-<p><%= t('.your_account_locked') %></p>
-
-<p><%= t('.click_link_to_unlock') %></p>
-
-<p><%= link_to t('.link_to_unlock'), unlock_url(@resource, unlock_token: @token) %></p>
+<div class="form-group col">
+  <div class="form-group justify-content-md-center offset-3 col-6">
+    <p><%= t('.hello')%><%= @resource.email %>!</p>
+    <p><%= t('.your_account_locked') %></p>
+    <p><%= t('.click_link_to_unlock') %></p>
+    <p>
+      <%= link_to t('.link_to_unlock'), unlock_url(@resource, unlock_token: @token) %></p>
+  </div>
+</div>

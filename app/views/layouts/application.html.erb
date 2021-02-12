@@ -11,16 +11,27 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
 
-    <% if current_user %>
-      <%= link_to t('.logout'), destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to t('.registration'), new_user_registration_path %>
-      <%= link_to t('.login'), new_user_session_path %>
-    <% end %>
+    <div class="container">
 
-    <%= yield %>
+        <% if current_user %>
+          <p class="text-center"><%= link_to t('.logout'), destroy_user_session_path, method: :delete %></p>
+        <% else %>
+          <p class="text-center">
+            <%= link_to t('.registration'), new_user_registration_path %> |
+            <%= link_to t('.login'), new_user_session_path %>
+          </p>
+
+        <% end %>
+
+      <%= yield %>
+    </div>
+
+
+
   </body>
 </html>

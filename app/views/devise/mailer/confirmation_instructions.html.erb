@@ -1,5 +1,8 @@
-<p><%= t('.page_title') %> <%= @email %>!</p>
-
-<p><%= t('.you_can_confirm_email') %></p>
-
-<p><%= link_to t('.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token) %></p>
+<div class="form-group col">
+  <div class="form-group justify-content-md-center offset-3 col-6">
+    <p><%= t('.page_title') %> <%= @email %>!</p>
+    <p><%= t('.you_can_confirm_email') %></p>
+    <p><%= link_to t('.confirm_my_account'),
+                                                     confirmation_url(@resource, confirmation_token: @token) %></p>
+  </div>
+</div>

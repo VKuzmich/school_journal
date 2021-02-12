@@ -96,7 +96,8 @@ en:
         sign_up_page_title: 'Sign up'
         sign_up_button: "Sign up"
         email: 'email'
-        new_password: "new-password"
+        new_password: "new password"
+        repeat_password: "repeat password"
     sessions:
       new:
         login_page_title: 'Log in'
@@ -120,6 +121,9 @@ en:
         did_not_recieve_instructions: "Didn't receive confirmation instructions?"
         did_not_recieve_unlock_instructions: "Didn't receive unlock instructions?"
         passwords: 'passwords'
+        sign_in_with: "Sign in with"
+        unlocks: "unlocks"
+        confirmations: 'confirmations'
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"
