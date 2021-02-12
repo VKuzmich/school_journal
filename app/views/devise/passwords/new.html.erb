@@ -1,16 +1,16 @@
-<h2><%= t('.forgot_your_password_title')%></h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: t(".email") %>
+<div class="form-group col">
+  <div class="form-group justify-content-md-center">
+    <h2 class="form-group offset-3 col-6"><%= t('.forgot_your_password_title')%></h2>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="form-group offset-3 col-6">
+       <%= f.email_field :email, class: 'form-control', placeholder: t(".email") %>
+      </div>
+      <div class="actions form-group offset-3 col-6">
+        <%= f.submit t('.send_password_instructions'), class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="actions">
-    <%= f.submit t('.send_password_instructions') %>
-  </div>
-<% end %>
+</div>
 
 <%= render "devise/shared/links" %>
