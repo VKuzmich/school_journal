@@ -6,7 +6,7 @@
       <%= f.input :email, placeholder: t(".email")%>
       <% if @minimum_password_length %>
         <%= f.input :password, placeholder: t(".new_password"),
-                  label: "Password (#{@minimum_password_length} #{t('.characters_minimum')})" %>
+                  label: "Password (#{t('.characters_minimum', count: @minimum_password_length)})" %>
 
       <% end %>
       <%= f.input :password_confirmation, placeholder: t(".repeat_password") %>

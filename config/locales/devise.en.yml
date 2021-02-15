@@ -58,7 +58,7 @@ en:
         confirm_new_password: "Confirm new password"
         change_my_password: "Change my password"
         new-password: "new-password"
-        characters_minimum: 'characters minimum'
+        characters_minimum: '%{count} characters minimum'
       new:
         email: "email"
         forgot_your_password_title: 'Forgot your password?'
@@ -91,14 +91,14 @@ en:
         new_password: "new-password"
         current_password: "current-password"
         email: "email"
-        characters_minimum: 'characters minimum'
+        characters_minimum: '%{count} characters minimum'
       new:
         sign_up_page_title: 'Sign up'
         sign_up_button: "Sign up"
         email: 'email'
         new_password: "new password"
         repeat_password: "repeat password"
-        characters_minimum: 'characters minimum'
+        characters_minimum: '%{count} characters minimum'
     sessions:
       new:
         login_page_title: 'Log in'
