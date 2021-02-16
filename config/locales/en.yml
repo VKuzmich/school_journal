@@ -35,3 +35,6 @@ en:
       registration: 'Registration'
       login: 'Login'
       logout: 'Logout'
+
+  user:
+    message: "Format should be '(222)-222-2222'"
