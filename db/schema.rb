@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2021_02_16_132553) do
   enable_extension "plpgsql"
 
   create_table "grades", force: :cascade do |t|
-    t.integer "grade"
-    t.string "grade_group"
+    t.string "number"
+    t.string "group", limit: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
