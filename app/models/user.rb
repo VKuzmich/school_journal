@@ -4,9 +4,25 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates_length_of :first_name, within: 3..30
-  validates_length_of :last_name, within: 3..30
-  validates_length_of :address, within: 3..50
+  validates :first_name, :last_name,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            format: { with: /\A[a-zA-Z]+\z/}
 
-  validates_format_of :phone, with:  /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{3})?\)?[- ]?\d{3}[- ]?\d{4}\z/ , message:"Only positive number without spaces are allowed"
+  validates :address,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            format: { with: /\A[a-zA-Z0-9_.,!"" ]+\z/}
+
+  validates_length_of :first_name, :last_name, :address, within: 3..40
+
+  validates :phone, presence: true,
+          format: {
+            with:  /(\+38)\(?\d{3}\)?[\-]?(\d{3}[\-]\d{2}\d{2}|\d{3}-\d{4})/ ,
+            message: I18n.t("model.user.message")
+          }
+
+  validates_each :first_name, :last_name, :address do |record, attr, value|
+    record.errors.add(attr, I18n.t('.model.user.must_start_with_upper_case')) if value =~ /\A[a-z]/
+  end
 end

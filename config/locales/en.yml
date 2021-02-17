@@ -35,6 +35,9 @@ en:
       registration: 'Registration'
       login: 'Login'
       logout: 'Logout'
-
-  user:
-    message: "Format should be '(222)-222-2222'"
+  model:
+    user:
+      message: "Format should be '+38(222)-222-2222' or +38(023)122-2222"
+      must_start_with_upper_case: 'must start with upper case'
+      only_letters_allow: "only allows letters"
+      length: "Should be more than 3 or less than 40"
