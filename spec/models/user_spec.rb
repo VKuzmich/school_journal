@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
     it { is_expected.not_to allow_value('Fe').for(:last_name) }
     it { is_expected.not_to allow_value('fer').for(:last_name) }
     it { is_expected.to allow_value('Fenix').for(:last_name) }
-    it { is_expected.to allow_value('+38(023)-122-2222').for(:phone) }
+    it { is_expected.not_to allow_value('+38(023)-122-2222').for(:phone) }
     it { is_expected.to allow_value('+38(023)122-2222').for(:phone) }
     it { is_expected.not_to allow_value('38(023)-122-2222').for(:phone) }
     it { is_expected.not_to allow_value('+38(23)-122-2222').for(:phone) }
