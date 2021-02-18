@@ -36,5 +36,5 @@ en:
       login: 'Login'
       logout: 'Logout'
 
-  format_number: "format should be '+38(023)122-2222'"
   must_start_with_upper_case: "must start with upper case"
+  format_should_be_38_023_122_2222: "format should be '+38(023)122-2222'"

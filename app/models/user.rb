@@ -20,10 +20,9 @@ class User < ApplicationRecord
             presence: true,
             format: {
               with:  /(\+38)\(?\d{3}\)?(\d{3}[\-]\d{2}\d{2}|\d{3}-\d{4})/,
-              message: t :format_number
-            }
+              message: I18n.t('format_should_be_38_023_122_2222') }
 
   validates_each :first_name, :last_name, :address do |record, attr, value|
-    record.errors.add(attr, t('must_start_with_upper_case')) if value =~ /\A[a-z]/
+    record.errors.add(attr, I18n.t('must_start_with_upper_case')) if value =~ /\A[a-z]/
   end
 end
