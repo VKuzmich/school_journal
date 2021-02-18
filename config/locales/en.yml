@@ -44,5 +44,9 @@ en:
             phone:
               format: "format should be '+38(023)122-2222'"
 
-
-  must_start_with_upper_case: "must start with upper case"
+            address:
+              format: "must start with upper case"
+            first_name:
+              format: "must start with upper case"
+            last_name:
+              format: "must start with upper case"
