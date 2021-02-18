@@ -35,3 +35,18 @@ en:
       registration: 'Registration'
       login: 'Login'
       logout: 'Logout'
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            phone:
+              format: "format should be '+38(023)122-2222'"
+
+            address:
+              format: "must start with upper case"
+            first_name:
+              format: "must start with upper case"
+            last_name:
+              format: "must start with upper case"
