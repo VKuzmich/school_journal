@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2021_02_16_132553) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+
   create_table "grades", force: :cascade do |t|
     t.string "number"
     t.string "group", limit: 1
