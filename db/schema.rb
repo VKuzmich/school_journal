@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_144953) do
+ActiveRecord::Schema.define(version: 2021_02_19_162054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 2021_02_18_144953) do
     t.bigint "grade_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "teacher_id", null: false
     t.index ["grade_id"], name: "index_lessons_on_grade_id"
     t.index ["subject_id"], name: "index_lessons_on_subject_id"
+    t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
   end
 
   create_table "parents", force: :cascade do |t|
@@ -41,10 +43,43 @@ ActiveRecord::Schema.define(version: 2021_02_18_144953) do
     t.index ["user_id"], name: "index_parents_on_user_id"
   end
 
+  create_table "rates", force: :cascade do |t|
+    t.integer "rate"
+    t.bigint "student_id", null: false
+    t.bigint "lesson_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_rates_on_lesson_id"
+    t.index ["student_id"], name: "index_rates_on_student_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.date "birthday"
+    t.bigint "user_id", null: false
+    t.bigint "grade_id", null: false
+    t.bigint "parent_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["grade_id"], name: "index_students_on_grade_id"
+    t.index ["parent_id"], name: "index_students_on_parent_id"
+    t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
   create_table "subjects", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "subject_id", null: false
+    t.bigint "lesson_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_teachers_on_lesson_id"
+    t.index ["subject_id"], name: "index_teachers_on_subject_id"
+    t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,5 +100,14 @@ ActiveRecord::Schema.define(version: 2021_02_18_144953) do
 
   add_foreign_key "lessons", "grades"
   add_foreign_key "lessons", "subjects"
+  add_foreign_key "lessons", "teachers"
   add_foreign_key "parents", "users"
+  add_foreign_key "rates", "lessons"
+  add_foreign_key "rates", "students"
+  add_foreign_key "students", "grades"
+  add_foreign_key "students", "parents"
+  add_foreign_key "students", "users"
+  add_foreign_key "teachers", "lessons"
+  add_foreign_key "teachers", "subjects"
+  add_foreign_key "teachers", "users"
 end
