@@ -1,5 +1,6 @@
 class Teacher < ApplicationRecord
   belongs_to :user
   belongs_to :subject
-  belongs_to :lesson
+
+  has_many  :lessons
 end
