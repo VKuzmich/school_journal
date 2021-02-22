@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_162054) do
+ActiveRecord::Schema.define(version: 2021_02_19_164926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,10 +74,8 @@ ActiveRecord::Schema.define(version: 2021_02_19_162054) do
   create_table "teachers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "subject_id", null: false
-    t.bigint "lesson_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["lesson_id"], name: "index_teachers_on_lesson_id"
     t.index ["subject_id"], name: "index_teachers_on_subject_id"
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
@@ -98,7 +96,6 @@ ActiveRecord::Schema.define(version: 2021_02_19_162054) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "parents", "users"
   add_foreign_key "lessons", "grades"
   add_foreign_key "lessons", "subjects"
   add_foreign_key "lessons", "teachers"
@@ -108,7 +105,6 @@ ActiveRecord::Schema.define(version: 2021_02_19_162054) do
   add_foreign_key "students", "grades"
   add_foreign_key "students", "parents"
   add_foreign_key "students", "users"
-  add_foreign_key "teachers", "lessons"
   add_foreign_key "teachers", "subjects"
   add_foreign_key "teachers", "users"
 end
