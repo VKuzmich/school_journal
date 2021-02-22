@@ -1,19 +1,11 @@
 <div class="form-group col">
   <div class="form-group justify-content-md-center offset-3 col-6">
     <h2 class="form-group "><%= t('.login_page_title')%></h2>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-group ">
-        <%= f.email_field :email, class: 'form-control', placeholder: t(".email") %>
-      </div>
-      <div class="form-group">
-        <%= f.password_field :password, class: 'form-control', placeholder: t(".current_password"),  autocomplete: "off" %>
-      </div>
-      <% if devise_mapping.rememberable? %>
-        <div class="form-group">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </div>
-      <% end %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), defaults: { input_html: { class: 'form-control' } }) do |f| %>
+        <%= f.input :email, placeholder: t(".email") %>
+        <%= f.input :password, placeholder: t(".current_password"),  autocomplete: "off" %>
+        <%= f.label :remember_me, class: 'deviselabels' %>
+        <%= f.check_box :remember_me if devise_mapping.rememberable? %>
       <div class="actions">
         <%= f.submit "Log In", class: "btn btn-primary" %>
         <%= link_to "Forgot Password", new_user_password_path, class: "btn btn-primary" %>
