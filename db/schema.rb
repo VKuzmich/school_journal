@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_164926) do
     t.index ["grade_id"], name: "index_lessons_on_grade_id"
     t.index ["subject_id"], name: "index_lessons_on_subject_id"
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
+
   end
 
   create_table "parents", force: :cascade do |t|
