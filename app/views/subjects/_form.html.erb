@@ -1,0 +1,16 @@
+<h2><%= action_name == 'new' ? 'New' : 'Edit' %>  Subjects</h2>
+<br>
+<div class="container">
+  <%= form_for @subject do |f| %>
+    <div class="col-md-3">
+      <%= f.text_field :name, placeholder: "Write name", class: "form-control" %>
+    </div>
+    <br>
+    <div class="col-md-3">
+      <%= f.submit %>
+    </div>
+  <% end %>
+  <hr>
+  <div class="col-md-3"><%= link_to 'Back', subjects_path, class: "btn btn-primary" %></div>
+</div>
+
