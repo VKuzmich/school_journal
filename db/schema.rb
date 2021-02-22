@@ -43,10 +43,12 @@ ActiveRecord::Schema.define(version: 2021_02_19_065457) do
 
   create_table "rates", force: :cascade do |t|
     t.integer "rate"
+    t.bigint "student_id", null: false
     t.bigint "lesson_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["lesson_id"], name: "index_rates_on_lesson_id"
+    t.index ["student_id"], name: "index_rates_on_student_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -98,6 +100,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_065457) do
   add_foreign_key "lessons", "subjects"
   add_foreign_key "parents", "users"
   add_foreign_key "rates", "lessons"
+  add_foreign_key "rates", "students"
   add_foreign_key "students", "grades"
   add_foreign_key "students", "parents"
   add_foreign_key "students", "users"
