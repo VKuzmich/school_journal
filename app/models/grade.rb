@@ -2,6 +2,9 @@ class Grade < ApplicationRecord
   START_NUMBER = 1
   END_NUMBER = 12
   GROUP_LETTERS_LENGTH = 1
+
+  has_many :lessons
+
   validates :number, presence: true
   validates_inclusion_of :number, in: START_NUMBER..END_NUMBER
   validates :group,
