@@ -2,7 +2,7 @@ class SubjectsController < ApplicationController
   before_action :set_subject, only: %i[show edit update destroy]
 
   def index
-    @subjects = Subject.all.order('created_at DESC')
+    @subjects = Subject.all
   end
 
   def show; end
@@ -40,7 +40,7 @@ class SubjectsController < ApplicationController
   private
 
   def set_subject
-    @subject = Subject.find_by(id: params[:id])
+    @subject = Subject.find(params[:id])
     raise ActiveRecord::RecordNotFound unless @subject
   end
 

@@ -1,25 +1,24 @@
 <div class="container">
   <div class="col-md-9">
-    <h2 class="text-center">Subjects</h2>
+    <h2 class="text-center"><%= t('.subject') %></h2>
     <table class="table table-striped">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Time</th>
-        <th colspan=2 scope="col">Actions</th>
-
+        <th scope="col"><%= t('.name') %></th>
+        <th scope="col"><%= t('.time') %></th>
+        <th colspan=2 scope="col"><%= t('.actions') %></th>
       </tr>
       </thead>
       <tbody>
       <tr>
         <td><%= @subject.name %></td>
         <td><%= @subject.created_at.strftime("%B %d, %Y") %></td>
-        <td><%= link_to 'Edit', edit_subject_path(@subject.id) %></td>
-        <td><%= link_to 'Delete', subject_path(@subject.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('.edit'), edit_subject_path(@subject.id) %></td>
+        <td><%= link_to t('.delete'), subject_path(@subject.id), method: :delete, data: { confirm: t('.are_you_sure') } %></td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
 <br>
-<%= link_to 'Back', subjects_path, class: "btn btn-primary" %>
+<%= link_to t('.back'), subjects_path, class: "btn btn-primary" %>
