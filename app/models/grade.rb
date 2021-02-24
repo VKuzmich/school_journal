@@ -1,10 +1,7 @@
 class Grade < ApplicationRecord
   START_NUMBER = 1
-  private_constant :START_NUMBER
   END_NUMBER = 12
-  private_constant :END_NUMBER
   GROUP_LETTERS_LENGTH = 1
-  private_constant :GROUP_LETTERS_LENGTH
 
   has_many :lessons
 

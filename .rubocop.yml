@@ -41,3 +41,6 @@ Style/DocumentationMethod:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Style/ConstantVisibility:
+  Enabled: false
