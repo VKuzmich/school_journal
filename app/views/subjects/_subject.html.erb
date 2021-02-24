@@ -1,8 +1,6 @@
   <tr>
     <td><%= subject.name %></td>
     <td><%= subject.created_at.strftime("%B %d, %Y") %></td>
-    <td><%= link_to t('.show'), subject_path(subject.id) %></td>
-    <td><%= link_to t('.edit'), edit_subject_path(subject.id) %></td>
-    <td><%= link_to t('.delete'), subject_path(subject.id), method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+    <%= render partial: 'subjects/actions', locals: {subject: subject} %>
   </tr>
 

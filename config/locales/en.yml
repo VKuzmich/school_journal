@@ -43,9 +43,7 @@ en:
       back: 'Back'
     subject:
       are_you_sure: 'Are you sure?'
-      show: 'Show'
-      edit: 'Edit'
-      delete: 'Delete'
+
     show:
       are_you_sure: 'Are you sure?'
       subject: 'Subject'
@@ -61,6 +59,10 @@ en:
       time: 'Time'
       actions: 'Actions'
       subjects: 'Subjects'
+    actions:
+      show: 'Show'
+      edit: 'Edit'
+      delete: 'Delete'
   activerecord:
     errors:
       models:
