@@ -50,3 +50,8 @@ en:
               format: "must start with upper case"
             last_name:
               format: "must start with upper case"
+  controllers:
+    admin:
+      authorized?:
+        flash:
+          error: "You are not authorized to view that page."
