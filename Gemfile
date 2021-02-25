@@ -32,6 +32,7 @@ gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'simple_form', '~> 5.1'
 gem 'factory_bot_rails'
 gem 'rails-controller-testing'
+gem 'faker', '~> 2.16'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

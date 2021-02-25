@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Subjects", type: :request do
-  let(:subject) { FactoryBot.create(:subject) }
-  let(:subjects) { FactoryBot.create_list(:subject, 6) }
+  let(:subject) { create(:subject) }
+  let(:subjects) { create_list(:subject, 3) }
   describe 'GET #index' do
     before do
       get subjects_path
     end
     it 'index status' do
-      expect(response.status).to eq(200)
+      expect(response).to have_http_status(:success)
     end
     it 'render index view' do
       is_expected.to render_template :index
@@ -19,7 +19,7 @@ RSpec.describe "Subjects", type: :request do
       get subject_path(id: subject.id)
     end
     it 'show status' do
-      expect(response.status).to eq(200)
+      expect(response).to have_http_status(:success)
     end
     it 'should show subject' do
       is_expected.to render_template :show
@@ -27,7 +27,7 @@ RSpec.describe "Subjects", type: :request do
   end
 
   describe 'DELETE #destroy' do
-    let!(:new_subject) { FactoryBot.create :subject }
+    let!(:new_subject) { create :subject }
     context 'delete from subjects table' do
       before do
         get subject_path(id: subject.id)
@@ -44,5 +44,14 @@ RSpec.describe "Subjects", type: :request do
         is_expected.to render_template :show
       end
     end
+  end
+
+  describe 'does not exist' do
+
+    before do
+      allow(Subject).to receive(:where).with(created_from: subject[:id]).and_return(false)
+    end
+
+    it { expect(response).to have_http_status(404) }
   end
 end

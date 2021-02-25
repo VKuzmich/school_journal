@@ -1,6 +1,5 @@
 FactoryBot.define do
-  factory :subject do
-    sequence(:id) { |n| n }
-    sequence(:name) { |n| "Math#{n}" }
+  factory :subject do |f|
+      f.name { Faker::Educator.subject }
   end
 end
