@@ -11,6 +11,4 @@ class Grade < ApplicationRecord
             presence: true,
             format: { with: /\A(?=.*[A-Z]).+\z/ },
             length: { is: GROUP_LETTERS_LENGTH }
-
-  private_constant :START_NUMBER, :END_NUMBER, :GROUP_LETTERS_LENGTH
 end
