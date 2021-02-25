@@ -9,9 +9,6 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:address) }
     it { is_expected.to validate_presence_of(:phone) }
 
-    it { should validate_uniqueness_of(:first_name).case_insensitive }
-    it { should validate_uniqueness_of(:last_name).case_insensitive }
-
     it { is_expected.to validate_length_of(:first_name).is_at_least(3).is_at_most(40) }
     it { is_expected.to validate_length_of(:last_name).is_at_least(3).is_at_most(40) }
     it { is_expected.to validate_length_of(:address).is_at_least(3).is_at_most(40) }

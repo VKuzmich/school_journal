@@ -7,9 +7,9 @@ class Grade < ApplicationRecord
   has_many :students
 
   validates :number, presence: true
-  validates_inclusion_of :number, in: START_NUMBER..END_NUMBER
+  validates :number, inclusion: START_NUMBER..END_NUMBER
   validates :group,
             presence: true,
             format: { with: /\A(?=.*[A-Z]).+\z/ },
-            length: { is: GROUP_LETTERS_LENGTH}
+            length: { is: GROUP_LETTERS_LENGTH }
 end

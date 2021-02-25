@@ -5,5 +5,5 @@ class Lesson < ApplicationRecord
 
   has_many :rates
 
-  validates_presence_of :date_at, :home_task, :description
+  validates :date_at, :home_task, :description, presence: true
 end
