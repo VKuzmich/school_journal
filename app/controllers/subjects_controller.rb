@@ -32,12 +32,19 @@ class SubjectsController < ApplicationController
   end
 
   def destroy
-    @subject.destroy
+    @subject = Subject.find(params[:id])
 
+    @subject.destroy
     redirect_to subjects_path
   end
 
   private
+
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render json: {
+      error: exception.message
+    }, status: 404
+  end
 
   def set_subject
     @subject = Subject.find(params[:id])

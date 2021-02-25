@@ -47,11 +47,10 @@ RSpec.describe "Subjects", type: :request do
   end
 
   describe 'does not exist' do
-
     before do
-      allow(Subject).to receive(:where).with(created_from: subject[:id]).and_return(false)
+      get '/subjects/notarealid'
     end
-
+    it { expect(response).to have_http_status :not_found }
     it { expect(response).to have_http_status(404) }
   end
 end
