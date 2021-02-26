@@ -9,6 +9,8 @@ RSpec.describe 'Admin::Subjects', type: :request do
                         phone: '+38(023)122-2222',
                         first_name: "Zakhar",
                         last_name: 'Bondar') }
+  let(:attr) { { name: 'Physics' } }
+  let(:wrong_attr) { { name: '' } }
 
   describe 'GET #index' do
     before(:each) do
@@ -42,18 +44,15 @@ RSpec.describe 'Admin::Subjects', type: :request do
     context 'delete from subjects table' do
       before do
         sign_in admin
-        get admin_subject_path(id: subject.id)
+        delete admin_subject_path(id: subject.id)
       end
+
       it 'delete subject' do
         expect { new_subject.destroy }.to change { Subject.count }.by(-1)
       end
 
-      it 'after delete response successful' do
-        expect(response).to be_successful
-      end
-
-      it 'render view new after destroy' do
-        is_expected.to render_template :show
+      it 'redirect to index new after destroy' do
+        is_expected.to redirect_to admin_subjects_path
       end
     end
 
@@ -61,7 +60,7 @@ RSpec.describe 'Admin::Subjects', type: :request do
       before do
         sign_in admin
       end
-      it { expect { get '/admin/subjects/99' }.to raise_error(ActiveRecord::RecordNotFound) }
+      it { expect { get admin_subject_path(id: '99') }.to raise_error(ActiveRecord::RecordNotFound) }
     end
   end
 
@@ -108,8 +107,6 @@ RSpec.describe 'Admin::Subjects', type: :request do
   end
 
   describe 'PATCH #update' do
-    let(:attr) { { name: 'Physics' } }
-    let(:wrong_attr) { { name: '' } }
     before(:each) do
       sign_in admin
       patch admin_subject_path(id: subject.id), params: { id: subject.id, subject: attr }
