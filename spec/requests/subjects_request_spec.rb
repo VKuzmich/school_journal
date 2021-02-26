@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Subjects", type: :request do
+RSpec.describe 'Subjects', type: :request do
   let(:subject) { create(:subject) }
   let(:subjects) { create_list(:subject, 3) }
+
   describe 'GET #index' do
     before do
       get subjects_path
@@ -14,6 +15,7 @@ RSpec.describe "Subjects", type: :request do
       is_expected.to render_template :index
     end
   end
+
   describe 'GET #show' do
     before do
       get subject_path(id: subject.id)
@@ -44,13 +46,75 @@ RSpec.describe "Subjects", type: :request do
         is_expected.to render_template :show
       end
     end
+
+    context 'does not exist subject' do
+      it { expect { get '/subjects/99' }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
   end
 
-  describe 'does not exist' do
-    before do
-      get '/subjects/notarealid'
+  describe 'GET #new' do
+    it 'create a new Subject' do
+      get new_subject_path
+      expect(assigns(:subject)).to be_a_new(Subject)
     end
-    it { expect(response).to have_http_status :not_found }
-    it { expect(response).to have_http_status(404) }
+    it 'renders the :new template' do
+      get new_subject_path
+      expect(response).to render_template :new
+    end
+  end
+
+  describe 'CREATE #create' do
+    context 'with valid data' do
+      before do
+        post subjects_path, params: { subject: { name: 'English' } }
+      end
+
+      it { expect(Subject.count).to eq(1) }
+      it 'redirects to the new subject' do
+        expect(response).to redirect_to Subject.last
+      end
+    end
+
+    context 'with invalid attributes' do
+      before do
+        post subjects_path, params: { subject: { name: '' } }
+      end
+
+      it 'does not save the new subject' do
+        expect { response }.to_not change(Subject, :count)
+      end
+      it 're-renders the new method' do
+        expect(response).to render_template :new
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    let(:attr) { { name: 'Physics' } }
+    let(:wrong_attr) { { name: '' } }
+    before(:each) do
+      patch subject_path(id: subject.id), params: { id: subject.id, subject: attr }
+      subject.reload
+    end
+
+    context 'valid attributes' do
+      it { expect(response).to redirect_to(subject) }
+      it { expect(subject.name).to eq('Physics') }
+      it { expect(response).to be_redirect }
+    end
+
+    context 'with invalid attributes' do
+      before do
+        patch subject_path(id: subject.id), params: { id: subject.id, subject: wrong_attr }
+        subject.reload
+      end
+      it 'does not change the courier\'s attributes' do
+        expect(response).not_to be_redirect
+      end
+
+      it 're-renders the edit template' do
+        expect(response).to render_template :edit
+      end
+    end
   end
 end
