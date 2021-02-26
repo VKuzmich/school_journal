@@ -36,33 +36,62 @@ en:
       login: 'Login'
       logout: 'Logout'
 
-  subjects:
-    form:
-      subjects_title: "Subjects"
-      name: 'Name'
-      back: 'Back'
-    subject:
-      are_you_sure: 'Are you sure?'
+  admin:
+    subjects:
+      form:
+        subjects_title: "Subjects"
+        name: 'Name'
+        back: 'Back'
+      subject:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        subject: 'Subject'
+        name: 'Name'
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        add_new_subject: 'Add New Subject'
+        name: 'Name'
+        time: 'Time'
+        actions: 'Actions'
+        subjects: 'Subjects'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'
+#  subjects:
+#    form:
+#      subjects_title: "Subjects"
+#      name: 'Name'
+#      back: 'Back'
+#    subject:
+#      are_you_sure: 'Are you sure?'
+#
+#    show:
+#      are_you_sure: 'Are you sure?'
+#      subject: 'Subject'
+#      name: 'Name'
+#      time: 'Time'
+#      actions: 'Actions'
+#      edit: 'Edit'
+#      delete: 'Delete'
+#      back: 'Back'
+#    index:
+#      add_new_subject: 'Add New Subject'
+#      name: 'Name'
+#      time: 'Time'
+#      actions: 'Actions'
+#      subjects: 'Subjects'
+#    actions:
+#      show: 'Show'
+#      edit: 'Edit'
+#      delete: 'Delete'
 
-    show:
-      are_you_sure: 'Are you sure?'
-      subject: 'Subject'
-      name: 'Name'
-      time: 'Time'
-      actions: 'Actions'
-      edit: 'Edit'
-      delete: 'Delete'
-      back: 'Back'
-    index:
-      add_new_subject: 'Add New Subject'
-      name: 'Name'
-      time: 'Time'
-      actions: 'Actions'
-      subjects: 'Subjects'
-    actions:
-      show: 'Show'
-      edit: 'Edit'
-      delete: 'Delete'
   activerecord:
     errors:
       models:

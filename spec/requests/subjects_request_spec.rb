@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe 'Subjects', type: :request do
+RSpec.describe 'Admin::Subjects', type: :request do
   let(:subject) { create(:subject) }
   let(:subjects) { create_list(:subject, 3) }
 
   describe 'GET #index' do
     before do
-      get subjects_path
+      get admin_subjects_path
     end
     it 'index status' do
       expect(response).to have_http_status(:success)
@@ -18,7 +18,7 @@ RSpec.describe 'Subjects', type: :request do
 
   describe 'GET #show' do
     before do
-      get subject_path(id: subject.id)
+      get admin_subject_path(id: subject.id)
     end
     it 'show status' do
       expect(response).to have_http_status(:success)
@@ -32,7 +32,7 @@ RSpec.describe 'Subjects', type: :request do
     let!(:new_subject) { create :subject }
     context 'delete from subjects table' do
       before do
-        get subject_path(id: subject.id)
+        get admin_subject_path(id: subject.id)
       end
       it 'delete subject' do
         expect { new_subject.destroy }.to change { Subject.count }.by(-1)
@@ -48,17 +48,17 @@ RSpec.describe 'Subjects', type: :request do
     end
 
     context 'does not exist subject' do
-      it { expect { get '/subjects/99' }.to raise_error(ActiveRecord::RecordNotFound) }
+      it { expect { get '/admin/subjects/99' }.to raise_error(ActiveRecord::RecordNotFound) }
     end
   end
 
   describe 'GET #new' do
     it 'create a new Subject' do
-      get new_subject_path
+      get new_admin_subject_path
       expect(assigns(:subject)).to be_a_new(Subject)
     end
     it 'renders the :new template' do
-      get new_subject_path
+      get new_admin_subject_path
       expect(response).to render_template :new
     end
   end
@@ -66,18 +66,18 @@ RSpec.describe 'Subjects', type: :request do
   describe 'CREATE #create' do
     context 'with valid data' do
       before do
-        post subjects_path, params: { subject: { name: 'English' } }
+        post admin_subjects_path, params: { subject: { name: 'English' } }
       end
 
       it { expect(Subject.count).to eq(1) }
       it 'redirects to the new subject' do
-        expect(response).to redirect_to Subject.last
+        expect(response).to redirect_to admin_subject_path(:id)
       end
     end
 
     context 'with invalid attributes' do
       before do
-        post subjects_path, params: { subject: { name: '' } }
+        post admin_subjects_path, params: { subject: { name: '' } }
       end
 
       it 'does not save the new subject' do
@@ -93,19 +93,19 @@ RSpec.describe 'Subjects', type: :request do
     let(:attr) { { name: 'Physics' } }
     let(:wrong_attr) { { name: '' } }
     before(:each) do
-      patch subject_path(id: subject.id), params: { id: subject.id, subject: attr }
+      patch admin_subject_path(id: subject.id), params: { id: subject.id, subject: attr }
       subject.reload
     end
 
     context 'valid attributes' do
-      it { expect(response).to redirect_to(subject) }
+      it { expect(response).to redirect_to(admin_subjects_path) }
       it { expect(subject.name).to eq('Physics') }
       it { expect(response).to be_redirect }
     end
 
     context 'with invalid attributes' do
       before do
-        patch subject_path(id: subject.id), params: { id: subject.id, subject: wrong_attr }
+        patch admin_subject_path(id: subject.id), params: { id: subject.id, subject: wrong_attr }
         subject.reload
       end
       it 'does not change the courier\'s attributes' do

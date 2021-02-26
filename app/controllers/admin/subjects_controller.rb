@@ -1,4 +1,4 @@
-class SubjectsController < ApplicationController
+class Admin::SubjectsController < Admin::ApplicationController
   before_action :set_subject, only: %i[show edit update destroy]
 
   def index
@@ -15,7 +15,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
 
     if @subject.save
-      redirect_to @subject
+      redirect_to admin_subjects_path
     else
       render :new
     end
@@ -25,7 +25,7 @@ class SubjectsController < ApplicationController
 
   def update
     if @subject.update(subject_params)
-      redirect_to @subject
+      redirect_to [:admin, @subject]
     else
       render 'edit'
     end
@@ -34,7 +34,7 @@ class SubjectsController < ApplicationController
   def destroy
     @subject.destroy
 
-    redirect_to subjects_path
+    redirect_to admin_subjects_path
   end
 
   private

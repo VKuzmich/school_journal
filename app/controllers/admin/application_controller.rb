@@ -4,7 +4,7 @@ class Admin::ApplicationController < ApplicationController
   private
 
   def authorized?
-    return if user.admin?
+    return if current_user.admin?
 
     flash[:error] = t('admin.forbidden_error')
     redirect_to(root_path)
