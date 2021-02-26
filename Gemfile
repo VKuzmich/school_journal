@@ -40,6 +40,11 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
   gem 'shoulda-matchers', '~> 4.0'
   gem 'database_cleaner-active_record'
+  gem 'rubocop', '~> 1.10', require: false
+  gem 'rubocop-rspec', '~> 2.2'
+  gem 'rubocop-performance', '~> 1.9', '>= 1.9.2'
+  gem 'rubocop-rails', '~> 2.9', '>= 2.9.1'
+  gem 'simplecov', require: false
 end
 
 group :development do

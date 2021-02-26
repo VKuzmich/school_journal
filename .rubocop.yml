@@ -1,0 +1,46 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  EnabledByDefault: true
+  TargetRubyVersion: 3.0.0
+  Exclude:
+    - 'app/views/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'csv/**/*'
+    - 'slate/**/*'
+    - 'vendor/bundle/**/*'
+    - 'node_modules/**/*'
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'config.ru'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'app/channels/application_cable/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Performance/RegexpMatch:
+  Enabled: false
+
+Lint/ConstantResolution:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Style/DocumentationMethod:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/ConstantVisibility:
+  Enabled: false

@@ -100,7 +100,6 @@ ActiveRecord::Schema.define(version: 2021_02_23_135511) do
   add_foreign_key "lessons", "grades"
   add_foreign_key "lessons", "subjects"
   add_foreign_key "lessons", "teachers"
-  add_foreign_key "parents", "users"
   add_foreign_key "rates", "lessons"
   add_foreign_key "rates", "students"
   add_foreign_key "students", "grades"
