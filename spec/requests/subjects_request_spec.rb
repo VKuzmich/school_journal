@@ -3,9 +3,17 @@ require 'rails_helper'
 RSpec.describe 'Admin::Subjects', type: :request do
   let(:subject) { create(:subject) }
   let(:subjects) { create_list(:subject, 3) }
+  let!(:admin) { create(:user,
+                        admin: true,
+                        address: "Kharkov",
+                        phone: '+38(023)122-2222',
+                        first_name: "Zakhar",
+                        last_name: 'Bondar') }
 
   describe 'GET #index' do
-    before do
+    before(:each) do
+      sign_in admin
+      # allow(controller).to receive(:authorized?).and_return(true)
       get admin_subjects_path
     end
     it 'index status' do
@@ -18,6 +26,7 @@ RSpec.describe 'Admin::Subjects', type: :request do
 
   describe 'GET #show' do
     before do
+      sign_in admin
       get admin_subject_path(id: subject.id)
     end
     it 'show status' do
@@ -32,6 +41,7 @@ RSpec.describe 'Admin::Subjects', type: :request do
     let!(:new_subject) { create :subject }
     context 'delete from subjects table' do
       before do
+        sign_in admin
         get admin_subject_path(id: subject.id)
       end
       it 'delete subject' do
@@ -48,11 +58,17 @@ RSpec.describe 'Admin::Subjects', type: :request do
     end
 
     context 'does not exist subject' do
+      before do
+        sign_in admin
+      end
       it { expect { get '/admin/subjects/99' }.to raise_error(ActiveRecord::RecordNotFound) }
     end
   end
 
   describe 'GET #new' do
+    before(:each) do
+      sign_in admin
+    end
     it 'create a new Subject' do
       get new_admin_subject_path
       expect(assigns(:subject)).to be_a_new(Subject)
@@ -66,17 +82,19 @@ RSpec.describe 'Admin::Subjects', type: :request do
   describe 'CREATE #create' do
     context 'with valid data' do
       before do
+        sign_in admin
         post admin_subjects_path, params: { subject: { name: 'English' } }
       end
 
       it { expect(Subject.count).to eq(1) }
       it 'redirects to the new subject' do
-        expect(response).to redirect_to admin_subject_path(:id)
+        expect(response).to redirect_to admin_subjects_path
       end
     end
 
     context 'with invalid attributes' do
       before do
+        sign_in admin
         post admin_subjects_path, params: { subject: { name: '' } }
       end
 
@@ -93,18 +111,20 @@ RSpec.describe 'Admin::Subjects', type: :request do
     let(:attr) { { name: 'Physics' } }
     let(:wrong_attr) { { name: '' } }
     before(:each) do
+      sign_in admin
       patch admin_subject_path(id: subject.id), params: { id: subject.id, subject: attr }
       subject.reload
     end
 
     context 'valid attributes' do
-      it { expect(response).to redirect_to(admin_subjects_path) }
+      it { expect(response).to redirect_to admin_subject_url }
       it { expect(subject.name).to eq('Physics') }
       it { expect(response).to be_redirect }
     end
 
     context 'with invalid attributes' do
       before do
+        sign_in admin
         patch admin_subject_path(id: subject.id), params: { id: subject.id, subject: wrong_attr }
         subject.reload
       end
