@@ -11,6 +11,7 @@ RSpec.describe 'Admin::Subjects', type: :request do
                         last_name: 'Bondar') }
   let(:attr) { { name: 'Physics' } }
   let(:wrong_attr) { { name: '' } }
+  let(:invalid_id) { '998' }
 
   describe 'GET #index' do
     before(:each) do
@@ -59,8 +60,9 @@ RSpec.describe 'Admin::Subjects', type: :request do
     context 'does not exist subject' do
       before do
         sign_in admin
+
       end
-      it { expect { get admin_subject_path(id: '99') }.to raise_error(ActiveRecord::RecordNotFound) }
+      it { expect { get admin_subject_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }
     end
   end
 
