@@ -3,27 +3,23 @@ require 'rails_helper'
 RSpec.describe 'Admin::Subjects', type: :request do
   let(:subject) { create(:subject) }
   let(:subjects) { create_list(:subject, 3) }
-  let!(:admin) { create(:user,
-                        admin: true,
-                        address: "Kharkov",
-                        phone: '+38(023)122-2222',
-                        first_name: "Zakhar",
-                        last_name: 'Bondar') }
+  let!(:admin) { create(:user, :admin, :user_data) }
   let(:attr) { { name: 'Physics' } }
   let(:wrong_attr) { { name: '' } }
   let(:invalid_id) { '998' }
 
   describe 'GET #index' do
-    before(:each) do
-      sign_in admin
-      # allow(controller).to receive(:authorized?).and_return(true)
-      get admin_subjects_path
-    end
-    it 'index status' do
-      expect(response).to have_http_status(:success)
-    end
-    it 'render index view' do
-      is_expected.to render_template :index
+    context 'with logged-in admin' do
+      before(:each) do
+        sign_in admin
+        get admin_subjects_path
+        it 'index status' do
+          expect(response).to have_http_status(:success)
+        end
+        it 'render index view' do
+          is_expected.to render_template :index
+        end
+      end
     end
   end
 
@@ -123,7 +119,6 @@ RSpec.describe 'Admin::Subjects', type: :request do
 
     context 'with invalid attributes' do
       before do
-        sign_in admin
         patch admin_subject_path(id: subject.id), params: { id: subject.id, subject: wrong_attr }
         subject.reload
       end

@@ -1,11 +1,16 @@
 FactoryBot.define do
-  factory :user do |f|
-    f.first_name { Faker::Name.first_name }
-    f.last_name { Faker::Name.last_name }
-    f.phone { Faker::PhoneNumber.cell_phone_with_country_code }
-    f.address { Faker::Address.full_address }
-    f.email { Faker::Internet.email }
-    f.password { '12345678' }
-    f.admin { false }
+  factory :user do
+    trait :user_data do
+      first_name { Faker::Name.first_name }
+      last_name { 'Bondar' }
+      phone { '+38(023)122-2222' }
+      address { "Kharkov" }
+      email { Faker::Internet.email }
+      password { '12345678' }
+    end
+
+    trait :admin do
+      admin { true }
+    end
   end
 end
