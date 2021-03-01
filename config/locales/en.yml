@@ -68,7 +68,7 @@ en:
       form:
         grades_title: "Grades"
         number: 'Number'
-        group: 'Group'
+        letter: 'Letter'
         back: 'Back'
       grade:
         are_you_sure: 'Are you sure?'
@@ -86,7 +86,7 @@ en:
         grades_title: "Grades"
         add_new_subject: 'Add New Subject'
         number: 'Number'
-        group: 'Group'
+        letter: 'Letter'
         time: 'Time'
         actions: 'Actions'
         subjects: 'Subjects'
@@ -95,6 +95,7 @@ en:
         edit: 'Edit'
         delete: 'Delete'
         are_you_sure: 'Are you sure?'
+
   activerecord:
     errors:
       models:
