@@ -84,7 +84,7 @@ en:
         back: 'Back'
       index:
         grades_title: "Grades"
-        add_new_subject: 'Add New Subject'
+        add_new_grade: 'Add New Grade'
         number: 'Number'
         letter: 'Letter'
         time: 'Time'

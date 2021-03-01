@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Admin::Grades", type: :request do
     let(:grade) { create(:grade) }
-    let(:grades) { create_list(:subject, 3) }
+    let(:grades) { create_list(:grade, 3) }
     let!(:admin) { create(:user, :admin) }
+    let!(:current_user) { create(:user) }
     let(:attr) { { number: '5' , letter: "D" } }
     let(:wrong_attr) { { number: '5' , letter: "" } }
     let(:invalid_id) { '998' }
@@ -13,14 +14,38 @@ RSpec.describe "Admin::Grades", type: :request do
         before(:each) do
           sign_in admin
           get admin_grades_path
-          it 'index status' do
-            expect(response).to have_http_status(:success)
-          end
-          it 'render index view' do
-            is_expected.to render_template :index
-          end
+        end
+        it 'index status' do
+          expect(response).to have_http_status(:success)
+        end
+        it 'render index view' do
+          is_expected.to render_template :index
         end
       end
+
+      # context 'with logged-in user' do
+      #   before do
+      #     sign_in current_user
+      #     get root_path
+      #   end
+      #   it 'index status' do
+      #     expect(page).to have_current_path(root_path)
+      #   end
+
+      # end
+
+      # context "not logged-in user" do
+      #   before do
+      #     sign_out user
+      #     get admin_grades_path
+      #   end
+      #   it 'should return 302 when not logged in' do
+      #     expect(response).to have_http_status(302)
+      #     follow_redirect!
+      #     click_link "Logout"
+      #     expect(page).to have_content("You have been logged out")
+      #   end
+      # end
     end
 
     describe 'GET #show' do
@@ -31,14 +56,11 @@ RSpec.describe "Admin::Grades", type: :request do
       it 'show status' do
         expect(response).to have_http_status(:success)
       end
-      it 'should show subject' do
+      it 'should show grade' do
         is_expected.to render_template :show
       end
 
-      context 'does not exist subject' do
-        before do
-          sign_in admin
-        end
+      context 'does not exist grade' do
         it { expect { get admin_grade_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }
 
       end
@@ -77,16 +99,18 @@ RSpec.describe "Admin::Grades", type: :request do
     end
 
     describe 'CREATE #create' do
+      before do
+        sign_in admin
+      end
       context 'with valid data' do
         before do
-          sign_in admin
           post admin_grades_path, params: { grade: { number: '8', letter: "C" } }
         end
 
-        it 'redirects to the new subject' do
+        it 'redirects to the new grades' do
           expect(response).to redirect_to admin_grades_path
         end
-        it 'name of created and saved Subject' do
+        it 'name of created and saved Grade' do
           subject = Grade.last
           expect(subject.number).to eq( 8)
           expect(subject.letter).to eq( "C" )
@@ -96,11 +120,10 @@ RSpec.describe "Admin::Grades", type: :request do
 
       context 'with invalid attributes' do
         before do
-          sign_in admin
           post admin_grades_path, params: { grade: { letter: '' } }
         end
 
-        it 'does not save the new subject' do
+        it 'does not save the new grade' do
           expect { response }.to_not change(Grade, :count)
         end
         it 're-renders the new method' do
