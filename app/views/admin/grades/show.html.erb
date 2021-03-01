@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="col-md-9">
+    <h2 class="text-center"><%= t('.grade') %></h2>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col"><%= t('.number') %></th>
+        <th scope="col"><%= t('.group') %></th>
+        <th scope="col"><%= t('.time') %></th>
+        <th colspan=2 scope="col"><%= t('.actions') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @grade.number %></td>
+        <td><%= @grade.group %></td>
+        <td><%= @grade.created_at.strftime("%B %d, %Y") %></td>
+        <td><%= link_to t('.edit'), edit_admin_grade_path(@grade.id) %></td>
+        <td><%= link_to t('.delete'), admin_grade_path(@grade.id), method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<%= link_to t('.back'), admin_grades_path, class: "btn btn-primary" %>

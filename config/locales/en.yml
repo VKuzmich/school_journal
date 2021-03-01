@@ -50,4 +50,36 @@ en:
               format: "must start with upper case"
             last_name:
               format: "must start with upper case"
-  
+
+  admin:
+    grades:
+      form:
+        grades_title: "Grades"
+        number: 'Number'
+        group: 'Group'
+        back: 'Back'
+      grade:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        grade: 'Grade'
+        number: 'Number'
+        group: 'Group'
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        grades_title: "Grades"
+        add_new_subject: 'Add New Subject'
+        number: 'Number'
+        group: 'Group'
+        time: 'Time'
+        actions: 'Actions'
+        subjects: 'Subjects'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'

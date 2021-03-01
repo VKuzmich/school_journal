@@ -1,0 +1,11 @@
+<h2><%= action_name == 'new' ? 'New' : 'Edit' %> <%= t('.grades_title') %></h2>
+<br>
+<div class="container">
+  <%= simple_form_for [:admin, @grade], defaults: { input_html: { class: 'actions form-control' } } do |f| %>
+    <%= f.input_field :number, placeholder: t('.number') %>
+    <%= f.input_field :group, placeholder: t('.group')%>
+    <%= f.submit "save", class: "actions btn btn-primary" %>
+  <% end %>
+  <hr>
+  <div class="col-md-3"><%= link_to t('.back'), admin_grades_path, class: "btn btn-primary" %></div>
+</div>
