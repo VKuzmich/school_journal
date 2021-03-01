@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Admin::Subjects', type: :request do
   let(:subject) { create(:subject) }
   let(:subjects) { create_list(:subject, 3) }
-  let!(:admin) { create(:user, :admin, :user_data) }
+  let!(:admin) { create(:user, :admin) }
   let(:attr) { { name: 'Physics' } }
   let(:wrong_attr) { { name: '' } }
   let(:invalid_id) { '998' }
@@ -40,6 +40,7 @@ RSpec.describe 'Admin::Subjects', type: :request do
         sign_in admin
       end
       it { expect { get admin_subject_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }
+
     end
   end
 
