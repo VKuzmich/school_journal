@@ -1,0 +1,6 @@
+  <tr>
+    <td><%= subject.name %></td>
+    <td><%= subject.created_at.strftime("%B %d, %Y") %></td>
+    <%= render partial: 'admin/subjects/actions', locals: {subject: subject} %>
+  </tr>
+
