@@ -1,0 +1,18 @@
+<h1 class="text-center"><%= t('.subjects') %></h1>
+<div class="container">
+  <table class="table table-striped text-center">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col"><%= t('.name')%></th>
+      <th scope="col"><%= t('.time') %></th>
+      <th colspan=3 scope="col"><%= t('.actions') %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render partial: 'subject', collection: @subjects %>
+    </tbody>
+  </table>
+  <hr>
+</div>
+
+<%= link_to t('.add_new_subject'), new_admin_subject_path, class: "btn btn-primary" %>
