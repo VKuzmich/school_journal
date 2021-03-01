@@ -1,6 +1,6 @@
 <tr>
   <td><%= grade.number %></td>
-  <td><%= grade.group %></td>
+  <td><%= grade.letter %></td>
   <td><%= grade.created_at.strftime("%B %d, %Y") %></td>
   <%= render partial: 'admin/grades/actions', locals: {grade: grade} %>
 </tr>
