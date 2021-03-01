@@ -21,6 +21,16 @@ RSpec.describe 'Admin::Subjects', type: :request do
         end
       end
     end
+
+    context 'with logged-in user' do
+      before(:each) do
+        sign_in user
+        get root_path
+        it 'index status' do
+          expect(page).to have_current_path(root_path)
+        end
+      end
+    end
   end
 
   describe 'GET #show' do
