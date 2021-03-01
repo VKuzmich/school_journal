@@ -34,6 +34,13 @@ RSpec.describe 'Admin::Subjects', type: :request do
     it 'should show subject' do
       is_expected.to render_template :show
     end
+
+    context 'does not exist subject' do
+      before do
+        sign_in admin
+      end
+      it { expect { get admin_subject_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
   end
 
   describe 'DELETE #destroy' do
@@ -51,13 +58,6 @@ RSpec.describe 'Admin::Subjects', type: :request do
       it 'redirect to index new after destroy' do
         is_expected.to redirect_to admin_subjects_path
       end
-    end
-
-    context 'does not exist subject' do
-      before do
-        sign_in admin
-      end
-      it { expect { get admin_subject_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }
     end
   end
 
