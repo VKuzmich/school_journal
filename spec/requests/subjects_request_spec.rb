@@ -56,7 +56,6 @@ RSpec.describe 'Admin::Subjects', type: :request do
     context 'does not exist subject' do
       before do
         sign_in admin
-
       end
       it { expect { get admin_subject_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }
     end
@@ -83,10 +82,14 @@ RSpec.describe 'Admin::Subjects', type: :request do
         post admin_subjects_path, params: { subject: { name: 'English' } }
       end
 
-      it { expect(Subject.count).to eq(1) }
       it 'redirects to the new subject' do
         expect(response).to redirect_to admin_subjects_path
       end
+      it 'name of created and saved Subject' do
+        subject = Subject.last
+        expect(subject.name).to eq( "English")
+      end
+      it { expect(Subject.count).to eq(1) }
     end
 
     context 'with invalid attributes' do
