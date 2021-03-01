@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_135511) do
 
   create_table "grades", force: :cascade do |t|
     t.integer "number"
-    t.string "group", limit: 1
+    t.string "letter", limit: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_135511) do
   add_foreign_key "lessons", "grades"
   add_foreign_key "lessons", "subjects"
   add_foreign_key "lessons", "teachers"
+  add_foreign_key "parents", "users"
   add_foreign_key "rates", "lessons"
   add_foreign_key "rates", "students"
   add_foreign_key "students", "grades"

@@ -5,7 +5,7 @@
       <thead class="thead-dark">
       <tr>
         <th scope="col"><%= t('.number') %></th>
-        <th scope="col"><%= t('.group') %></th>
+        <th scope="col"><%= t('.letter') %></th>
         <th scope="col"><%= t('.time') %></th>
         <th colspan=2 scope="col"><%= t('.actions') %></th>
       </tr>
@@ -13,7 +13,7 @@
       <tbody>
       <tr>
         <td><%= @grade.number %></td>
-        <td><%= @grade.group %></td>
+        <td><%= @grade.letter %></td>
         <td><%= @grade.created_at.strftime("%B %d, %Y") %></td>
         <td><%= link_to t('.edit'), edit_admin_grade_path(@grade.id) %></td>
         <td><%= link_to t('.delete'), admin_grade_path(@grade.id), method: :delete, data: { confirm: t('.are_you_sure') } %></td>

@@ -8,7 +8,7 @@ class Grade < ApplicationRecord
 
   validates :number, presence: true
   validates :number, inclusion: START_NUMBER..END_NUMBER
-  validates :group,
+  validates :letter,
             presence: true,
             format: { with: /\A(?=.*[A-Z]).+\z/ },
             length: { is: GROUP_LETTERS_LENGTH }

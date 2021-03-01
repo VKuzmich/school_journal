@@ -44,6 +44,6 @@ class Admin::GradesController < Admin::ApplicationController
   end
 
   def grade_params
-    params.require(:grade).permit(:number, :group)
+    params.require(:grade).permit(:number, :letter)
   end
 end

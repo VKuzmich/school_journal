@@ -126,7 +126,7 @@ RSpec.describe 'Admin::Subjects', type: :request do
         patch admin_subject_path(id: subject.id), params: { id: subject.id, subject: wrong_attr }
         subject.reload
       end
-      it 'does not change the courier\'s attributes' do
+      it 'does not change the subject\'s attributes' do
         expect(response).not_to be_redirect
       end
 

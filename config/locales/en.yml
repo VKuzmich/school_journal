@@ -64,23 +64,6 @@ en:
         edit: 'Edit'
         delete: 'Delete'
         are_you_sure: 'Are you sure?'
-
-  activerecord:
-    errors:
-      models:
-        user:
-          attributes:
-            phone:
-              format: "format should be '+38(023)122-2222'"
-
-            address:
-              format: "must start with upper case"
-            first_name:
-              format: "must start with upper case"
-            last_name:
-              format: "must start with upper case"
-
-  admin:
     grades:
       form:
         grades_title: "Grades"
@@ -93,7 +76,7 @@ en:
         are_you_sure: 'Are you sure?'
         grade: 'Grade'
         number: 'Number'
-        group: 'Group'
+        letter: 'Letter'
         time: 'Time'
         actions: 'Actions'
         edit: 'Edit'
@@ -112,3 +95,18 @@ en:
         edit: 'Edit'
         delete: 'Delete'
         are_you_sure: 'Are you sure?'
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            phone:
+              format: "format should be '+38(023)122-2222'"
+
+            address:
+              format: "must start with upper case"
+            first_name:
+              format: "must start with upper case"
+            last_name:
+              format: "must start with upper case"
+

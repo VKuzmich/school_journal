@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-      first_name { Faker::Name.first_name }
+      first_name { "Evan" }
       last_name { 'Bondar' }
       phone { '+38(023)122-2222' }
       address { "Kharkov" }
