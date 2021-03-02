@@ -8,6 +8,7 @@ RSpec.describe 'Admin::Subjects', type: :request do
   let(:attr) { { name: 'Physics' } }
   let(:wrong_attr) { { name: '' } }
   let(:invalid_id) { '998' }
+  let(:not_user) { nil }
 
   describe 'GET #index' do
     context 'with logged-in admin' do
@@ -35,12 +36,11 @@ RSpec.describe 'Admin::Subjects', type: :request do
 
     context "not logged-in user" do
       before do
-        sign_out user
-        get root_path
+        sign_in :not_user
+        get admin_subjects_path
       end
-      it 'should get status 200' do
-        expect(response).to have_http_status(200)
-      end
+      it { expect(response.status).to eq(302) }
+      it { expect(response).to redirect_to root_path }
     end
   end
 

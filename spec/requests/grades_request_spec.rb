@@ -8,6 +8,7 @@ RSpec.describe "Admin::Grades", type: :request do
     let(:attr) { { number: '5' , letter: "D" } }
     let(:wrong_attr) { { number: '5' , letter: "" } }
     let(:invalid_id) { '998' }
+    let(:not_user) { nil }
 
     describe 'GET #index' do
       context 'with logged-in admin' do
@@ -35,12 +36,11 @@ RSpec.describe "Admin::Grades", type: :request do
 
       context "not logged-in user" do
         before do
-          sign_out user
-          get root_path
+          sign_in :not_user
+          get admin_grades_path
         end
-        it 'should get status 200' do
-          expect(response).to have_http_status(200)
-        end
+        it { expect(response.status).to eq(302) }
+        it { expect(response).to redirect_to root_path }
       end
     end
 
@@ -58,7 +58,6 @@ RSpec.describe "Admin::Grades", type: :request do
 
       context 'does not exist grade' do
         it { expect { get admin_grade_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }
-
       end
     end
 
