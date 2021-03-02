@@ -40,7 +40,7 @@ RSpec.describe 'Admin::Subjects', type: :request do
         get admin_subjects_path
       end
       it { expect(response.status).to eq(302) }
-      it { expect(response).to redirect_to root_path }
+      it { expect(response).to redirect_to new_user_session_path }
     end
   end
 

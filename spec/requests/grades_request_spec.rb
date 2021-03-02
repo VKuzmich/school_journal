@@ -8,7 +8,6 @@ RSpec.describe "Admin::Grades", type: :request do
     let(:attr) { { number: '5' , letter: "D" } }
     let(:wrong_attr) { { number: '5' , letter: "" } }
     let(:invalid_id) { '998' }
-    let(:not_user) { nil }
 
     describe 'GET #index' do
       context 'with logged-in admin' do
@@ -36,11 +35,10 @@ RSpec.describe "Admin::Grades", type: :request do
 
       context "not logged-in user" do
         before do
-          sign_in :not_user
           get admin_grades_path
         end
         it { expect(response.status).to eq(302) }
-        it { expect(response).to redirect_to root_path }
+        it { expect(response).to redirect_to new_user_session_path }
       end
     end
 
