@@ -4,33 +4,44 @@ RSpec.describe 'Admin::Subjects', type: :request do
   let(:subject) { create(:subject) }
   let(:subjects) { create_list(:subject, 3) }
   let!(:admin) { create(:user, :admin) }
+  let!(:user) { create(:user) }
   let(:attr) { { name: 'Physics' } }
   let(:wrong_attr) { { name: '' } }
   let(:invalid_id) { '998' }
 
   describe 'GET #index' do
     context 'with logged-in admin' do
-      before(:each) do
+      before do
         sign_in admin
         get admin_subjects_path
-        it 'index status' do
-          expect(response).to have_http_status(:success)
-        end
-        it 'render index view' do
-          is_expected.to render_template :index
-        end
+      end
+      it 'index status' do
+        expect(response).to have_http_status(:success)
+      end
+      it 'render index view' do
+        is_expected.to render_template :index
       end
     end
 
-    # context 'with logged-in user' do
-    #   before(:each) do
-    #     sign_in user
-    #     get root_path
-    #   end
-    #   it 'index status' do
-    #     expect(page).to have_current_path(root_path)
-    #   end
-    # end
+    context 'with logged-in user' do
+      before do
+        sign_in user
+        get root_path
+      end
+      it 'index status' do
+        expect(response).to render_template :index
+      end
+    end
+
+    context "not logged-in user" do
+      before do
+        sign_out user
+        get root_path
+      end
+      it 'should get status 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
   end
 
   describe 'GET #show' do

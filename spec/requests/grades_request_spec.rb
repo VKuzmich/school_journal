@@ -4,7 +4,7 @@ RSpec.describe "Admin::Grades", type: :request do
     let(:grade) { create(:grade) }
     let(:grades) { create_list(:grade, 3) }
     let!(:admin) { create(:user, :admin) }
-    let!(:current_user) { create(:user) }
+    let!(:user) { create(:user) }
     let(:attr) { { number: '5' , letter: "D" } }
     let(:wrong_attr) { { number: '5' , letter: "" } }
     let(:invalid_id) { '998' }
@@ -23,29 +23,25 @@ RSpec.describe "Admin::Grades", type: :request do
         end
       end
 
-      # context 'with logged-in user' do
-      #   before do
-      #     sign_in current_user
-      #     get root_path
-      #   end
-      #   it 'index status' do
-      #     expect(page).to have_current_path(root_path)
-      #   end
+      context 'with logged-in user' do
+        before do
+          sign_in user
+          get root_path
+        end
+        it 'index status' do
+          expect(response).to render_template :index
+        end
+      end
 
-      # end
-
-      # context "not logged-in user" do
-      #   before do
-      #     sign_out user
-      #     get admin_grades_path
-      #   end
-      #   it 'should return 302 when not logged in' do
-      #     expect(response).to have_http_status(302)
-      #     follow_redirect!
-      #     click_link "Logout"
-      #     expect(page).to have_content("You have been logged out")
-      #   end
-      # end
+      context "not logged-in user" do
+        before do
+          sign_out user
+          get root_path
+        end
+        it 'should get status 200' do
+          expect(response).to have_http_status(200)
+        end
+      end
     end
 
     describe 'GET #show' do
