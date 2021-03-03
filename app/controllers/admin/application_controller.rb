@@ -1,14 +1,12 @@
 class Admin::ApplicationController < ApplicationController
   before_action :authenticate_user!
-  before_action :authenticate_admin
-
-  def authenticate_admin
-    redirect_to '/', alert: 'Not authorized.' unless current_user && admin_access
-  end
+  before_action :authenticate_admin!
 
   private
 
-  def admin_access
-    current_user.try(:admin?)
+  def authenticate_admin!
+    return if current_user.try(:admin?)
+
+    redirect_to '/', alert: 'Not authorized.'
   end
 end

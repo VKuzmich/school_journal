@@ -42,6 +42,18 @@ en:
         subjects_title: "Subjects"
         name: 'Name'
         back: 'Back'
+#        subjects_list: "List of Subjects"
+        math: "Mathematics"
+        chemistry: "Chemistry"
+        physics: "Physics"
+        geography: "Geography"
+        algebra: "Algebra"
+        literature: "Literature"
+        finance: "Finance"
+        reading: "Reading"
+        foreign: "Foreign Language"
+        spanish: "Spanish"
+
       subject:
         are_you_sure: 'Are you sure?'
       show:
