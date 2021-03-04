@@ -1,12 +1,12 @@
 class Admin::ApplicationController < ApplicationController
-  before_action :authorized?
+  before_action :authenticate_user!
+  before_action :authenticate_admin!
 
   private
 
-  def authorized?
-    return if current_user.admin?
+  def authenticate_admin!
+    return if current_user&.admin?
 
-    flash[:error] = t('admin.forbidden_error')
-    redirect_to(root_path)
+    redirect_to root_path, alert: t('admin.alert')
   end
 end
