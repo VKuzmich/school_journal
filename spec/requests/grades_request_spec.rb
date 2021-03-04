@@ -1,48 +1,49 @@
 require 'rails_helper'
 
 RSpec.describe "Admin::Grades", type: :request do
-    let(:grade) { create(:grade) }
-    let(:grades) { create_list(:grade, 3) }
-    let!(:admin) { create(:user, :admin) }
-    let!(:user) { create(:user) }
-    let(:attr) { { number: '5' , letter: "D" } }
-    let(:wrong_attr) { { number: '5' , letter: "" } }
-    let(:invalid_id) { '998' }
+  let(:grade) { create(:grade) }
+  let(:grades) { create_list(:grade, 3) }
+  let!(:admin) { create(:user, :admin) }
+  let!(:user) { create(:user) }
+  let(:attr) { { number: '5' , letter: "D" } }
+  let(:wrong_attr) { { number: '5' , letter: "" } }
+  let(:invalid_id) { '998' }
 
-    describe 'GET #index' do
-      context 'with logged-in admin' do
-        before(:each) do
-          sign_in admin
-          get admin_grades_path
-        end
-        it 'index status' do
-          expect(response).to have_http_status(:success)
-        end
-        it 'render index view' do
-          is_expected.to render_template :index
-        end
+  describe 'GET #index' do
+    context 'with logged-in admin' do
+      before(:each) do
+        sign_in admin
+        get admin_grades_path
       end
-
-      context 'with logged-in user' do
-        before do
-          sign_in user
-          get admin_grades_path
-        end
-        it 'index status' do
-          expect(response).to redirect_to root_path
-        end
+      it 'index status' do
+        expect(response).to have_http_status(:success)
       end
-
-      context "not logged-in user" do
-        before do
-          get admin_grades_path
-        end
-        it { expect(response.status).to eq(302) }
-        it { expect(response).to redirect_to new_user_session_path }
+      it 'render index view' do
+        is_expected.to render_template :index
       end
     end
 
-    describe 'GET #show' do
+    context 'with logged-in user' do
+      before do
+        sign_in user
+        get admin_grades_path
+      end
+      it 'index status' do
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "not logged-in user" do
+      before do
+        get admin_grades_path
+      end
+      it { expect(response.status).to eq(302) }
+      it { expect(response).to redirect_to new_user_session_path }
+    end
+  end
+
+  describe 'GET #show' do
+    context 'with logged-in admin' do
       before do
         sign_in admin
         get admin_grade_path(id: grade.id)
@@ -59,7 +60,29 @@ RSpec.describe "Admin::Grades", type: :request do
       end
     end
 
-    describe 'DELETE #destroy' do
+    context 'with logged-in user' do
+      before do
+        sign_in user
+        get admin_grade_path(id: grade.id)
+      end
+
+      it 'index status' do
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "not logged-in user" do
+      before do
+        sign_in :not_user
+        get admin_grade_path(id: grade.id)
+      end
+      it { expect(response.status).to eq(302) }
+      it { expect(response).to redirect_to new_user_session_path }
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    context 'with logged-in admin' do
       let!(:new_grade) { create :grade }
       context 'delete from subjects table' do
         before do
@@ -77,21 +100,43 @@ RSpec.describe "Admin::Grades", type: :request do
       end
     end
 
-    describe 'GET #new' do
-      before(:each) do
-        sign_in admin
+    context 'with logged-in user' do
+      before do
+        sign_in user
+        delete admin_grade_path(id: grade.id)
       end
-      it 'create a new Grade' do
-        get new_admin_grade_path
-        expect(assigns(:grade)).to be_a_new(Grade)
-      end
-      it 'renders the :new template' do
-        get new_admin_grade_path
-        expect(response).to render_template :new
+
+      it 'index status' do
+        expect(response).to redirect_to root_path
       end
     end
 
-    describe 'CREATE #create' do
+    context "not logged-in user" do
+      before do
+        sign_in :not_user
+        delete admin_grade_path(id: grade.id)
+      end
+      it { expect(response.status).to eq(302) }
+      it { expect(response).to redirect_to new_user_session_path }
+    end
+  end
+
+  describe 'GET #new' do
+    before(:each) do
+      sign_in admin
+    end
+    it 'create a new Grade' do
+      get new_admin_grade_path
+      expect(assigns(:grade)).to be_a_new(Grade)
+    end
+    it 'renders the :new template' do
+      get new_admin_grade_path
+      expect(response).to render_template :new
+    end
+  end
+
+  describe 'CREATE #create' do
+    context 'with logged-in admin' do
       before do
         sign_in admin
       end
@@ -125,7 +170,29 @@ RSpec.describe "Admin::Grades", type: :request do
       end
     end
 
-    describe 'PATCH #update' do
+    context 'with logged-in user' do
+      before do
+        sign_in user
+        post admin_grades_path, params: { grade: { number: '8', letter: "C" } }
+      end
+
+      it 'index status' do
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "not logged-in user" do
+      before do
+        sign_in :not_user
+        post admin_grades_path, params: { grade: { number: '8', letter: "C" } }
+      end
+      it { expect(response.status).to eq(302) }
+      it { expect(response).to redirect_to new_user_session_path }
+    end
+  end
+
+  describe 'PATCH #update' do
+    context 'with logged-in admin' do
       before(:each) do
         sign_in admin
         patch admin_grade_path(id: grade.id), params: { id: grade.id, grade: attr }
@@ -152,4 +219,27 @@ RSpec.describe "Admin::Grades", type: :request do
         end
       end
     end
+
+    context 'with logged-in user' do
+      before do
+        sign_in user
+        patch admin_grade_path(id: grade.id), params: { id: grade.id, grade: attr }
+        grade.reload
+      end
+
+      it 'index status' do
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    context "not logged-in user" do
+      before do
+        sign_in :not_user
+        patch admin_grade_path(id: grade.id), params: { id: grade.id, grade: attr }
+        grade.reload
+      end
+      it { expect(response.status).to eq(302) }
+      it { expect(response).to redirect_to new_user_session_path }
+    end
+  end
 end
