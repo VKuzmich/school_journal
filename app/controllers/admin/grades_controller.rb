@@ -27,7 +27,7 @@ class Admin::GradesController < Admin::ApplicationController
     if @grade.update(grade_params)
       redirect_to [:admin, @grade]
     else
-      render 'edit'
+      render :edit
     end
   end
 

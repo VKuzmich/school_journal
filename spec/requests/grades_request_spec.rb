@@ -26,10 +26,10 @@ RSpec.describe "Admin::Grades", type: :request do
       context 'with logged-in user' do
         before do
           sign_in user
-          get root_path
+          get admin_grades_path
         end
         it 'index status' do
-          expect(response).to render_template :index
+          expect(response).to redirect_to root_path
         end
       end
 

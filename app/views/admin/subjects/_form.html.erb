@@ -2,16 +2,7 @@
 <br>
 <div class="container">
   <%= simple_form_for [:admin, @subject] do |f| %>
-      <%= f.input_field :name, collection: [ t('.math'),
-                                             t('.chemistry'),
-                                             t('.physics'),
-                                             t('.geography'),
-                                             t('.algebra'),
-                                             t('.literature'),
-                                             t('.finance'),
-                                             t('.reading'),
-                                             t('.foreign'),
-                                             t('.spanish') ], placeholder: t('.name'), class: "form-control" %>
+      <%= f.input_field :name, placeholder: t('.name'), class: "form-control" %>
       <%= f.submit "save", class: "actions btn btn-primary" %>
   <% end %>
   <hr>
