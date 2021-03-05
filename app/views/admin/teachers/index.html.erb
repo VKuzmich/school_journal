@@ -1,2 +1,19 @@
-<h1>Teachers#index</h1>
-<p>Find me in app/views/teachers/index.html.erb</p>
+<h1 class="text-center"><%= t('.teachers') %></h1>
+<div class="container">
+  <table class="table table-striped text-center">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col"><%= t('.name')%></th>
+      <th scope="col"><%= t('.email')%></th>
+      <th scope="col"><%= t('.time') %></th>
+      <th colspan=3 scope="col"><%= t('.actions') %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render partial: 'teacher', collection: @teachers %>
+    </tbody>
+  </table>
+  <hr>
+</div>
+
+<%= link_to t('.add_new_teacher'), new_admin_teacher_path, class: "btn btn-primary" %>

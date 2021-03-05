@@ -64,6 +64,35 @@ en:
         edit: 'Edit'
         delete: 'Delete'
         are_you_sure: 'Are you sure?'
+
+    teachers:
+      form:
+        teachers_title: "Teacher"
+        name: 'Name'
+        back: 'Back'
+      teacher:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        teacher: 'Teacher'
+        name: 'Name'
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        add_new_teacher: 'Add New Teacher'
+        name: 'Name'
+        time: 'Time'
+        actions: 'Actions'
+        teachers: 'Teachers'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'
+
     grades:
       form:
         grades_title: "Grades"
