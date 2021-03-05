@@ -1,4 +1,4 @@
 
 en:
   admin:
-    forbidden_error: "You are not authorized to view that page."
+    alert: 'Not authorized.'

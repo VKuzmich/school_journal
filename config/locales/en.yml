@@ -64,6 +64,37 @@ en:
         edit: 'Edit'
         delete: 'Delete'
         are_you_sure: 'Are you sure?'
+    grades:
+      form:
+        grades_title: "Grades"
+        number: 'Number'
+        letter: 'Letter'
+        back: 'Back'
+      grade:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        grade: 'Grade'
+        number: 'Number'
+        letter: 'Letter'
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        grades_title: "Grades"
+        add_new_grade: 'Add New Grade'
+        number: 'Number'
+        letter: 'Letter'
+        time: 'Time'
+        actions: 'Actions'
+        subjects: 'Subjects'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'
 
   activerecord:
     errors:
@@ -79,4 +110,4 @@ en:
               format: "must start with upper case"
             last_name:
               format: "must start with upper case"
-  
+
