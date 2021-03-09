@@ -1,2 +1,24 @@
-<h1>Teachers#show</h1>
-<p>Find me in app/views/teachers/show.html.erb</p>
+<div class="container">
+  <div class="col-md-9">
+    <h2 class="text-center"><%= t('teacher') %></h2>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col"><%= t('.name') %></th>
+        <th scope="col"><%= t('.time') %></th>
+        <th colspan=2 scope="col"><%= t('.actions') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+<!--        <td><%#= first_name %></td>-->
+        <td><%= @teacher.created_at.strftime("%B %d, %Y") %></td>
+        <td><%= link_to t('.edit'), edit_admin_teacher_path(@teacher.id) %></td>
+        <td><%= link_to t('.delete'), admin_teacher_path(@teacher.id), method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<%= link_to t('.back'), admin_teachers_path, class: "btn btn-primary" %>

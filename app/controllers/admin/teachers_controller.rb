@@ -1,7 +1,7 @@
 class Admin::TeachersController < Admin::ApplicationController
 
   def index
-    @teachers = User.joins(:teacher)
+    @teachers = Teacher.all
   end
 
   def show
@@ -12,9 +12,15 @@ class Admin::TeachersController < Admin::ApplicationController
     @teacher = Teacher.new
   end
 
-  def creare
+  def create
+    @subject = Subject.where(id: params[:subject_id])
     @teacher = Teacher.new(teacher_params)
-
+    # @teacher.subject= @subject
+    if @teacher.save
+      redirect_to admin_teachers_path
+    else
+      render :new
+    end
 
   end
 
