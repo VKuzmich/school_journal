@@ -5,7 +5,7 @@ class Admin::TeachersController < Admin::ApplicationController
   end
 
   def show
-
+    @teacher = Teacher.find(params[:id])
   end
 
   def new
@@ -13,9 +13,8 @@ class Admin::TeachersController < Admin::ApplicationController
   end
 
   def create
-    @subject = Subject.where(id: params[:subject_id])
     @teacher = Teacher.new(teacher_params)
-    # @teacher.subject= @subject
+                             # .merge(user_id: current_user.id))
     if @teacher.save
       redirect_to admin_teachers_path
     else
