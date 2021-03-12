@@ -75,7 +75,11 @@ en:
       show:
         are_you_sure: 'Are you sure?'
         teacher: 'Teacher'
-        name: 'Name'
+        first_name: 'First Name'
+        last_name: "Last Name"
+        address: "Address"
+        email: "Email"
+        subject: "Subject"
         time: 'Time'
         actions: 'Actions'
         edit: 'Edit'
@@ -83,7 +87,11 @@ en:
         back: 'Back'
       index:
         add_new_teacher: 'Add New Teacher'
-        name: 'Name'
+        first_name: 'First Name'
+        last_name: "Last Name"
+        address: "Address"
+        email: "Email"
+        subject: "Subject"
         time: 'Time'
         actions: 'Actions'
         teachers: 'Teachers'

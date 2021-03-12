@@ -1,17 +1,25 @@
 <div class="container">
-  <div class="col-md-9">
+  <div class="col-md">
     <h2 class="text-center"><%= t('teacher') %></h2>
     <table class="table table-striped">
       <thead class="thead-dark">
       <tr>
-        <th scope="col"><%= t('.name') %></th>
+        <th scope="col"><%= t('.first_name')%></th>
+        <th scope="col"><%= t('.last_name')%></th>
+        <th scope="col"><%= t('.address')%></th>
+        <th scope="col"><%= t('.email')%></th>
+        <th scope="col"><%= t('.subject')%></th>
         <th scope="col"><%= t('.time') %></th>
         <th colspan=2 scope="col"><%= t('.actions') %></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-<!--        <td><%#= first_name %></td>-->
+        <td><%= @teacher.user.first_name %></td>
+        <td><%= @teacher.user.last_name %></td>
+        <td><%= @teacher.user.address %></td>
+        <td><%= @teacher.user.email %></td>
+        <td><%= @teacher.subject.name %></td>
         <td><%= @teacher.created_at.strftime("%B %d, %Y") %></td>
         <td><%= link_to t('.edit'), edit_admin_teacher_path(@teacher.id) %></td>
         <td><%= link_to t('.delete'), admin_teacher_path(@teacher.id), method: :delete, data: { confirm: t('.are_you_sure') } %></td>

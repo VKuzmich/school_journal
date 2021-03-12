@@ -1,12 +1,11 @@
 class Admin::TeachersController < Admin::ApplicationController
+  before_action :set_teacher, only: %i[show edit update destroy]
 
   def index
     @teachers = Teacher.all
   end
 
-  def show
-    @teacher = Teacher.find(params[:id])
-  end
+  def show;  end
 
   def new
     @teacher = Teacher.new
@@ -23,8 +22,7 @@ class Admin::TeachersController < Admin::ApplicationController
 
   end
 
-  def edit
-  end
+  def edit;  end
 
   def update
     if @teacher.update(teacher_params)
@@ -34,10 +32,16 @@ class Admin::TeachersController < Admin::ApplicationController
     end
   end
 
+  def destroy
+    @teacher.destroy
+
+    redirect_to admin_teachers_path
+  end
+
   private
 
   def set_teacher
-    @subject = Teacher.find(params[:id])
+    @teacher = Teacher.find(params[:id])
   end
 
   def teacher_params
