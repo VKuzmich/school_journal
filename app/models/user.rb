@@ -9,9 +9,9 @@ class User < ApplicationRecord
 
   has_one :parent
   has_one :student
-  has_one :teacher
+  has_one :teacher, class_name: "Teacher"
 
-  validates :first_name,
+    validates :first_name,
             :last_name,
             presence: true,
             format: { with: /\A[a-zA-Z]+\z/ }
@@ -29,4 +29,9 @@ class User < ApplicationRecord
   validates_each :first_name, :last_name, :address do |record, attr, value|
     record.errors.add(attr) if value =~ /\A[a-z]/
   end
+
+  def full_name
+    [first_name, last_name].select(&:present?).join(' ').titleize
+  end
+
 end

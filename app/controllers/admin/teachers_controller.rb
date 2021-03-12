@@ -12,10 +12,8 @@ class Admin::TeachersController < Admin::ApplicationController
   end
 
   def create
-    @subjects = Subject.all
-    @users = User.all
     @teacher = Teacher.new(teacher_params)
-                             # .merge(user_id: current_user.id))
+
     if @teacher.save
       redirect_to admin_teachers_path
     else
