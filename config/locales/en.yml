@@ -87,8 +87,7 @@ en:
         back: 'Back'
       index:
         add_new_teacher: 'Add New Teacher'
-        first_name: 'First Name'
-        last_name: "Last Name"
+        full_name: 'Full Name'
         address: "Address"
         email: "Email"
         subject: "Subject"
