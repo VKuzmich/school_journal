@@ -123,18 +123,15 @@ RSpec.describe "Teachers", type: :request do
       context 'with valid data' do
         before do
           sign_in admin
-          post admin_teachers_path, params: { teacher: { teacher_id: teacher.id } }
+          # post admin_teachers_path, params: { teacher: { user_id: user.id, subject_id: subject.id } }
         end
+        it { expect do
+          post admin_teachers_path, params: { teacher: { user_id: user.id, subject_id: subject.id } }
+        end.to change(Teacher, :count).by(1) }
 
-        # it 'redirects to the new subject' do
-        #   expect(response).to redirect_to admin_teachers_path
-        # end
-
-        # it 'name of created and saved Subject' do
-        #   teacher = Teacher.last
-        #   expect(teacher.subject.name).to eq( "Biology")
-        # end
-        it { expect(Teacher.count).to eq(1) }
+        it 'redirects to the new subject' do
+          expect(response).to redirect_to admin_teachers_path
+        end
       end
 
       context 'with invalid attributes' do
@@ -180,9 +177,8 @@ RSpec.describe "Teachers", type: :request do
   describe 'PATCH #update' do
     context 'with logged-in admin' do
       before do
-        byebug
         sign_in admin
-        patch admin_teacher_path(id: teacher.id), params: { teacher: {id: teacher.id, user_id: 2, subject_id: 2 } }
+        patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: 2, subject_id: 2 } }
         teacher.reload
       end
 
@@ -194,7 +190,7 @@ RSpec.describe "Teachers", type: :request do
       context 'with invalid attributes' do
         before do
           sign_in admin
-          patch admin_teacher_path(id: teacher.id), params: { teacher: {id: teacher.id, user_id: '', subject_id: 2 } }
+          patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: '', subject_id: 2 } }
           teacher.reload
         end
         it 'does not change the subject\'s attributes' do
@@ -210,7 +206,7 @@ RSpec.describe "Teachers", type: :request do
     context 'with logged-in user' do
       before do
         sign_in user
-        patch admin_teacher_path(id: teacher.id), params: { teacher: {id: teacher.id, user_id: 2, subject_id: 2 } }
+        patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: 2, subject_id: 2 } }
         teacher.reload
       end
       it 'redirects to root-path' do
@@ -221,7 +217,7 @@ RSpec.describe "Teachers", type: :request do
     context "not logged-in user" do
       before do
         sign_in :not_user
-        patch admin_teacher_path(id: teacher.id), params: { teacher: {id: teacher.id, user_id: 2, subject_id: 2 } }
+        patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: 2, subject_id: 2 } }
         teacher.reload
       end
       it { expect(response.status).to eq(302) }
