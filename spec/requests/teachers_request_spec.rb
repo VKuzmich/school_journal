@@ -8,6 +8,8 @@ RSpec.describe "Teachers", type: :request do
   let!(:not_user) { nil }
   let!(:invalid_id) { '998' }
   let(:not_teacher) { nil }
+  let(:new_user) {create(:user)}
+  let(:new_subject) {create(:subject)}
 
   describe 'GET #index' do
     context 'with logged-in admin' do
@@ -121,17 +123,17 @@ RSpec.describe "Teachers", type: :request do
   describe 'CREATE #create' do
     context 'with logged-in admin' do
       context 'with valid data' do
-        before do
+        let(:user) {create(:user)}
+        let(:subject) {create(:subject)}
+        before(:each) do
           sign_in admin
-          # post admin_teachers_path, params: { teacher: { user_id: user.id, subject_id: subject.id } }
-        end
-        it { expect do
           post admin_teachers_path, params: { teacher: { user_id: user.id, subject_id: subject.id } }
-        end.to change(Teacher, :count).by(1) }
+        end
 
-        it 'redirects to the new subject' do
+        it 'redirects to the new teacher' do
           expect(response).to redirect_to admin_teachers_path
         end
+        it { expect(Teacher.count).to eq(1) }
       end
 
       context 'with invalid attributes' do
@@ -140,7 +142,7 @@ RSpec.describe "Teachers", type: :request do
           post admin_teachers_path, params: { teacher: { teacher_id: '' } }
         end
 
-        it 'does not save the new subject' do
+        it 'does not save the new teacher' do
           expect { response }.to_not change(Teacher, :count)
         end
         it 're-renders the new method' do
@@ -176,21 +178,25 @@ RSpec.describe "Teachers", type: :request do
 
   describe 'PATCH #update' do
     context 'with logged-in admin' do
+      let(:updated_user) {create(:user)}
+      let(:updated_subject) {create(:subject)}
       before do
         sign_in admin
-        patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: 2, subject_id: 2 } }
+        patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: updated_user.id,
+                                                                       subject_id: updated_subject.id } }
         teacher.reload
       end
 
       context 'valid attributes' do
+        it { expect(response).to redirect_to admin_teacher_url }
         it { expect(teacher.subject.name).to be_present }
-        it { expect(response).to redirect_to [:admin, @teacher] }
       end
 
       context 'with invalid attributes' do
         before do
           sign_in admin
-          patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: '', subject_id: 2 } }
+          patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: '',
+                                                                         subject_id: updated_subject.id } }
           teacher.reload
         end
         it 'does not change the subject\'s attributes' do
@@ -206,7 +212,8 @@ RSpec.describe "Teachers", type: :request do
     context 'with logged-in user' do
       before do
         sign_in user
-        patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: 2, subject_id: 2 } }
+        patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: new_user.id,
+                                                                       subject_id: new_subject.id } }
         teacher.reload
       end
       it 'redirects to root-path' do
@@ -217,7 +224,8 @@ RSpec.describe "Teachers", type: :request do
     context "not logged-in user" do
       before do
         sign_in :not_user
-        patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: 2, subject_id: 2 } }
+        patch admin_teacher_path(id: teacher.id), params: { teacher: { user_id: new_user.id,
+                                                                       subject_id: new_subject.id } }
         teacher.reload
       end
       it { expect(response.status).to eq(302) }
