@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_one :parent
   has_one :student
-  has_one :teacher, class_name: "Teacher"
+  has_one :teacher
 
     validates :first_name,
             :last_name,
@@ -31,7 +31,6 @@ class User < ApplicationRecord
   end
 
   def full_name
-    [first_name, last_name].select(&:present?).join(' ').titleize
+    "#{first_name} #{last_name}"
   end
-
 end
