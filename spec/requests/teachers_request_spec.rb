@@ -125,15 +125,19 @@ RSpec.describe "Teachers", type: :request do
       context 'with valid data' do
         let(:user) {create(:user)}
         let(:subject) {create(:subject)}
-        before(:each) do
+        before do
           sign_in admin
-          post admin_teachers_path, params: { teacher: { user_id: user.id, subject_id: subject.id } }
         end
 
         it 'redirects to the new teacher' do
-          expect(response).to redirect_to admin_teachers_path
+          expect(post admin_teachers_path, params: { teacher: { user_id: user.id,
+                                                                subject_id: subject.id } })
+            .to redirect_to admin_teachers_path
         end
-        it { expect(Teacher.count).to eq(1) }
+
+        it { expect do
+          post admin_teachers_path, params: { teacher: { user_id: user.id, subject_id: subject.id } }
+        end.to change(Teacher, :count).by(1) }
       end
 
       context 'with invalid attributes' do
