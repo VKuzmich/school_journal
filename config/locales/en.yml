@@ -75,8 +75,7 @@ en:
       show:
         are_you_sure: 'Are you sure?'
         teacher: 'Teacher'
-        first_name: 'First Name'
-        last_name: "Last Name"
+        full_name: 'Full Name'
         address: "Address"
         email: "Email"
         subject: "Subject"
