@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
     it { is_expected.not_to allow_value('+38(023)-1222222').for(:phone) }
   end
 
-  describe "user" do
+  describe '#full_name' do
     it "has a full name" do
       person = create(:user, first_name: "Svenson", last_name: "Fiord")
       expect(person.full_name).to eq("Svenson Fiord")
