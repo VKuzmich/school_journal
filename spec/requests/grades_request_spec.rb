@@ -149,9 +149,9 @@ RSpec.describe "Admin::Grades", type: :request do
           expect(response).to redirect_to admin_grades_path
         end
         it 'name of created and saved Grade' do
-          subject = Grade.last
-          expect(subject.number).to eq( 8)
-          expect(subject.letter).to eq( "C" )
+          grade = Grade.last
+          expect(grade.number).to eq( 8)
+          expect(grade.letter).to eq( "C" )
         end
         it { expect(Grade.count).to eq(1) }
       end
