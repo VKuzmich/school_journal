@@ -275,5 +275,4 @@ RSpec.describe "Teachers", type: :request do
       it { expect(response).to redirect_to new_user_session_path }
     end
   end
-
 end
