@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Admin::Parents", type: :request do
   let(:parent) { create(:parent) }
-  let(:parents) { create(:parent, 3) }
+  let(:parents) { create_list(:parent, 3) }
   let!(:admin) { create(:user, :admin) }
   let!(:user) { create(:user) }
   let!(:not_user) { nil }
@@ -11,11 +11,13 @@ RSpec.describe "Admin::Parents", type: :request do
   let(:new_user) {create(:user)}
 
   describe 'GET #index' do
+    before(:each) do
+      sign_in current_user
+      get admin_parents_path
+    end
+
     context 'with logged-in admin' do
-      before do
-        sign_in admin
-        get admin_parents_path
-      end
+      let(:current_user) {admin}
       it 'index status' do
         expect(response).to have_http_status(:success)
       end
@@ -25,72 +27,62 @@ RSpec.describe "Admin::Parents", type: :request do
     end
 
     context 'with logged-in user' do
-      before do
-        sign_in user
-        get admin_parents_path
-      end
+      let(:current_user) { user }
       it 'index status' do
         expect(response).to redirect_to root_path
       end
     end
 
     context "not logged-in user" do
-      before do
-        sign_in :not_user
-        get admin_parents_path
-      end
+      let(:current_user) { :not_user }
       it { expect(response.status).to eq(302) }
       it { expect(response).to redirect_to new_user_session_path }
     end
   end
 
   describe 'GET #show' do
+    before(:each) do
+      sign_in current_user
+      get admin_parent_path(id: parent.id)
+    end
+
     context 'with logged-in admin' do
-      before do
-        sign_in admin
-        get admin_parent_path(id: parent.id)
-      end
+      let(:current_user) { admin }
       it 'show status' do
         expect(response).to have_http_status(:success)
       end
       it 'should show parent' do
         is_expected.to render_template :show
       end
+    end
 
-      context 'does not exist parent' do
-        before do
-          sign_in admin
-        end
-        it { expect { get admin_parent_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }
-      end
+    context 'does not exist parent' do
+      let(:current_user) { admin }
+      it { expect { get admin_parent_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }
     end
 
     context 'with logged-in user' do
-      before do
-        sign_in user
-        get admin_parent_path(id: parent.id)
-      end
+      let(:current_user) { user }
       it 'redirects to root-path' do
         expect(response).to redirect_to root_path
       end
     end
 
     context "not logged-in user" do
-      before do
-        sign_in :not_user
-        get admin_parent_path(id: parent.id)
-      end
+      let(:current_user) {:not_user}
       it { expect(response.status).to eq(302) }
       it { expect(response).to redirect_to new_user_session_path }
     end
   end
 
   describe 'GET #new' do
+    before(:each) do
+      sign_in current_user
+      get new_admin_parent_path
+    end
+
     context 'with logged-in admin' do
-      before(:each) do
-        sign_in admin
-        get new_admin_parent_path
-      end
+      let(:current_user) {admin}
       it 'create a new Parent' do
         expect(assigns(:parent)).to be_a_new(Parent)
       end
@@ -100,20 +92,14 @@ RSpec.describe "Admin::Parents", type: :request do
     end
 
     context 'with logged-in user' do
-      before do
-        sign_in user
-        get new_admin_parent_path
-      end
+      let(:current_user) {user}
       it 'redirects to root-path' do
         expect(response).to redirect_to root_path
       end
     end
 
     context "not logged-in user" do
-      before do
-        sign_in :not_user
-        get new_admin_parent_path
-      end
+      let(:current_user) { :not_user }
       it { expect(response.status).to eq(302) }
       it { expect(response).to redirect_to new_user_session_path }
     end
@@ -178,13 +164,16 @@ RSpec.describe "Admin::Parents", type: :request do
 
 
   describe 'PATCH #update' do
+    before(:each) do
+      sign_in current_user
+      patch admin_parent_path(id: parent.id), params: { parent: { user_id: current_param } }
+      parent.reload
+    end
+
     context 'with logged-in admin' do
       let(:updated_user) {create(:user)}
-      before do
-        sign_in admin
-        patch admin_parent_path(id: parent.id), params: { parent: { user_id: updated_user.id } }
-        parent.reload
-      end
+      let(:current_user) { admin }
+      let(:current_param) { updated_user.id }
 
       context 'valid attributes' do
         it { expect(response).to redirect_to admin_parent_url }
@@ -192,11 +181,8 @@ RSpec.describe "Admin::Parents", type: :request do
       end
 
       context 'with invalid attributes' do
-        before do
-          sign_in admin
-          patch admin_parent_path(id: parent.id), params: { parent: { user_id: '' } }
-          parent.reload
-        end
+        let(:current_param) { '' }
+
         it 'does not change the parent\'s attributes' do
           expect(response).not_to be_redirect
         end
@@ -208,35 +194,33 @@ RSpec.describe "Admin::Parents", type: :request do
     end
 
     context 'with logged-in user' do
-      before do
-        sign_in user
-        patch admin_parent_path(id: parent.id), params: { parent: { user_id: new_user.id } }
-        parent.reload
-      end
+      let(:current_user) { user }
+      let(:current_param) { new_user.id }
+
       it 'redirects to root-path' do
         expect(response).to redirect_to root_path
       end
     end
 
     context "not logged-in user" do
-      before do
-        sign_in :not_user
-        patch admin_parent_path(id: parent.id), params: { parent: { user_id: new_user.id } }
-        parent.reload
-      end
+      let(:current_user) { :not_user }
+      let(:current_param) { new_user.id }
       it { expect(response.status).to eq(302) }
       it { expect(response).to redirect_to new_user_session_path }
     end
   end
 
   describe 'DELETE #destroy' do
+    before(:each) do
+      sign_in current_user
+      delete admin_parent_path(id: parent.id)
+    end
+
     context 'with logged-in admin' do
       let!(:new_parent) { create :parent }
+
       context 'delete from parents table' do
-        before do
-          sign_in admin
-          delete admin_parent_path(id: parent.id)
-        end
+      let(:current_user) { admin }
 
         it 'delete parent' do
           expect { new_parent.destroy }.to change { Parent.count }.by(-1)
@@ -249,20 +233,14 @@ RSpec.describe "Admin::Parents", type: :request do
     end
 
     context 'with logged-in user' do
-      before do
-        sign_in user
-        delete admin_parent_path(id: parent.id)
-      end
+      let(:current_user) { user }
       it 'redirects to root-path' do
         expect(response).to redirect_to root_path
       end
     end
 
     context "not logged-in user" do
-      before do
-        sign_in :not_user
-        delete admin_parent_path(id: parent.id)
-      end
+      let(:current_user) { :not_user }
       it { expect(response.status).to eq(302) }
       it { expect(response).to redirect_to new_user_session_path }
     end
