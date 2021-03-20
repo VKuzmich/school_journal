@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="col-md">
+    <h2 class="text-center"><%= t('.parent') %></h2>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col"><%= t('.full_name')%></th>
+        <th scope="col"><%= t('.address')%></th>
+        <th scope="col"><%= t('.email')%></th>
+        <th scope="col"><%= t('.time') %></th>
+        <th colspan=2 scope="col"><%= t('.actions') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @parent.full_name %></td>
+        <td><%= @parent.address %></td>
+        <td><%= @parent.email %></td>
+        <td><%= @parent.created_at.strftime("%B %d, %Y") %></td>
+        <td><%= link_to t('.edit'), edit_admin_parent_path(@parent.id) %></td>
+        <td><%= link_to t('.delete'), admin_parent_path(@parent.id), method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<%= link_to t('.back'), admin_parents_path, class: "btn btn-primary" %>

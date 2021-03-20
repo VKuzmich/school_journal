@@ -1,0 +1,8 @@
+  <tr>
+    <td><%= parent.full_name %></td>
+    <td><%= parent.address %></td>
+    <td><%= parent.email %></td>
+    <td><%= parent.created_at.strftime("%B %d, %Y") %></td>
+    <%= render partial: 'admin/parents/actions', locals: {parent: parent} %>
+  </tr>
+

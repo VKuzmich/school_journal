@@ -99,6 +99,38 @@ en:
         delete: 'Delete'
         are_you_sure: 'Are you sure?'
 
+    parents:
+      form:
+        parents_title: "Parent"
+        name: 'Name'
+        back: 'Back'
+      parent:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        parent: 'Parent'
+        full_name: 'Full Name'
+        address: "Address"
+        email: "Email"
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        add_new_parent: 'Add New Parent'
+        full_name: 'Full Name'
+        address: "Address"
+        email: "Email"
+        time: 'Time'
+        actions: 'Actions'
+        parents: 'Parents'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'
+
     grades:
       form:
         grades_title: "Grades"
