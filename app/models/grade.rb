@@ -12,4 +12,8 @@ class Grade < ApplicationRecord
             presence: true,
             format: { with: /\A(?=.*[A-Z]).+\z/ },
             length: { is: GROUP_LETTERS_LENGTH }
+
+  def grade_group
+    "#{number} #{letter}"
+  end
 end
