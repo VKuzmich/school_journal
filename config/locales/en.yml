@@ -99,6 +99,45 @@ en:
         delete: 'Delete'
         are_you_sure: 'Are you sure?'
 
+    students:
+      form:
+        students_title: "Student"
+        birthday: "Birthday"
+        name: 'Name'
+        back: 'Back'
+      student:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        student: 'Student'
+        full_name: 'Full Name'
+        address: "Address"
+        email: "Email"
+        birthday: "Birthday"
+        parent: "Parent"
+        grade: "Grade"
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        add_new_student: 'Add New Student'
+        full_name: 'Full Name'
+        address: "Address"
+        email: "Email"
+        birthday: "Birthday"
+        parent: "Parent"
+        grade: "Grade"
+        time: 'Time'
+        actions: 'Actions'
+        students: 'Students'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'
+
     parents:
       form:
         parents_title: "Parent"
