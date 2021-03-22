@@ -117,14 +117,18 @@ RSpec.describe "Admin::Students", type: :request do
         end
 
         it { expect do
-          post admin_students_path, params: { student: { student_id: student.id } }
+          post admin_students_path, params: { student: { user_id: user.id,
+                                                         grade_id: grade.id,
+                                                         parent_id: parent.id,
+                                                         birthday: Faker::Date.birthday } }
         end.to change(Student, :count).by(1) }
 
         it 'redirects to the new student' do
-          expect(post admin_students_path, params: { student: { user_id: user.id,
-                                                     grade_id: grade.id,
-                                                     parent_id: parent.id,
-                                                     birthday: student.birthday
+          expect(post admin_students_path, params: { student:
+                                                       { user_id: user.id,
+                                                         grade_id: grade.id,
+                                                         parent_id: parent.id,
+                                                         birthday: Faker::Date.birthday
           } })
             .to redirect_to admin_students_path
         end
