@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="col-md">
+    <h2 class="text-center"><%= t('.student') %></h2>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col"><%= t('.full_name')%></th>
+        <th scope="col"><%= t('.address')%></th>
+        <th scope="col"><%= t('.email')%></th>
+        <th scope="col"><%= t('.birthday')%></th>
+        <th scope="col"><%= t('.grade')%></th>
+        <th scope="col"><%= t('.parent')%></th>
+        <th scope="col"><%= t('.time') %></th>
+        <th colspan=2 scope="col"><%= t('.actions') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @student.full_name %></td>
+        <td><%= @student.address %></td>
+        <td><%= @student.email %></td>
+        <td><%= @student.birthday %></td>
+        <td><%= @student.grade_group %></td>
+        <td><%= @student.parent.full_name %></td>
+        <td><%= @student.created_at.strftime("%B %d, %Y") %></td>
+        <td><%= link_to t('.edit'), edit_admin_student_path(@student.id) %></td>
+        <td><%= link_to t('.delete'), admin_student_path(@student.id), method: :delete, data: { confirm: t('.are_you_sure') } %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<%= link_to t('.back'), admin_parents_path, class: "btn btn-primary" %>
