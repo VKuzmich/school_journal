@@ -137,7 +137,10 @@ RSpec.describe "Admin::Students", type: :request do
       context 'with invalid attributes' do
         before do
           sign_in admin
-          post admin_students_path, params: { student: { student_id: '' } }
+          post admin_students_path, params: { student: { user_id: user.id,
+                                                         grade_id: grade.id,
+                                                         parent_id: parent.id,
+                                                         birthday: Faker::Date.birthday } }
         end
 
         it 'does not save the new student' do
