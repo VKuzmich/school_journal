@@ -9,4 +9,12 @@ RSpec.describe Grade, type: :model do
   it { should_not allow_value('SD').for(:letter) }
   it { should_not allow_value('Dc').for(:letter) }
   it { should allow_value('D').for(:letter) }
+  it { is_expected.to validate_uniqueness_of(:letter).scoped_to(:number) }
+
+  describe '#grade_group' do
+    it "has full title" do
+      title = create(:grade, number: "5", letter: "D")
+      expect(title.grade_group).to eq("5-D")
+    end
+  end
 end

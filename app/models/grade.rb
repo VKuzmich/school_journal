@@ -11,5 +11,10 @@ class Grade < ApplicationRecord
   validates :letter,
             presence: true,
             format: { with: /\A(?=.*[A-Z]).+\z/ },
-            length: { is: GROUP_LETTERS_LENGTH }
+            length: { is: GROUP_LETTERS_LENGTH },
+            uniqueness: { scope: :number}
+
+  def grade_group
+    "#{number}-#{letter}"
+  end
 end
