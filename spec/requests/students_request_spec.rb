@@ -138,9 +138,9 @@ RSpec.describe "Admin::Students", type: :request do
         before do
           sign_in admin
           post admin_students_path, params: { student: { user_id: user.id,
-                                                         grade_id: grade.id,
-                                                         parent_id: parent.id,
-                                                         birthday: Faker::Date.birthday } }
+                                                         grade_id: nil,
+                                                         parent_id: nil,
+                                                         birthday: nil } }
         end
 
         it 'does not save the new student' do
