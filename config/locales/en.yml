@@ -180,8 +180,6 @@ en:
         delete: 'Delete'
         are_you_sure: 'Are you sure?'
 
-
-
     parents:
       form:
         parents_title: "Parent"
@@ -260,4 +258,3 @@ en:
               format: "must start with upper case"
             last_name:
               format: "must start with upper case"
-
