@@ -36,6 +36,48 @@ en:
       login: 'Login'
       logout: 'Logout'
 
+  lessons:
+    form:
+      lessons_title: "Lesson"
+      date_at: "Data"
+      home_task: 'Home Task'
+      description: "Description"
+      back: 'Back'
+
+    lesson:
+      are_you_sure: 'Are you sure?'
+    show:
+      are_you_sure: 'Are you sure?'
+      lesson: 'Lesson'
+      teacher: 'Teacher'
+      subject: "Subject"
+      grade: "Grade"
+      home_task: "Home Task"
+      description: "Description"
+      date_at: "Data"
+      time: 'Time'
+      actions: 'Actions'
+      edit: 'Edit'
+      delete: 'Delete'
+      back: 'Back'
+    index:
+      lessons: 'Lessons'
+      add_new_lesson: 'Add New Lesson'
+      teacher: 'Teacher'
+      subject: "Subject"
+      home_task: "Home Task"
+      description: "Description"
+      date_at: "Data"
+      grade: "Grade"
+      time: 'Time'
+      actions: 'Actions'
+      students: 'Students'
+    actions:
+      show: 'Show'
+      edit: 'Edit'
+      delete: 'Delete'
+      are_you_sure: 'Are you sure?'
+
   admin:
     subjects:
       form:
@@ -137,6 +179,8 @@ en:
         edit: 'Edit'
         delete: 'Delete'
         are_you_sure: 'Are you sure?'
+
+
 
     parents:
       form:

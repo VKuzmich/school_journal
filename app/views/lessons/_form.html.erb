@@ -1,0 +1,20 @@
+<h2><%= action_name == 'new' ? 'New' : 'Edit' %> <%= t('.lessons_title') %></h2>
+<br>
+<div class="container">
+  <%= simple_form_for @lesson, defaults: { input_html: { class: 'form-control' } } do |f| %>
+    <%= f.association :teacher, as: :select, label_method: :full_name, value_method: :id, include_blank: false %>
+    <%= f.association :subject, as: :select, value_method: :id, include_blank: false %>
+    <%= f.association :grade, as: :select,  label_method: :grade_group, value_method: :id, include_blank: false %>
+    <%= f.input :home_task, placeholder: t('.home_task') %>
+    <%= f.input :description, placeholder: t('.description') %>
+    <%= f.input :date_at, as: :date,
+                start_year: Time.now.year - 90,
+                end_year: Time.now.year - 8,
+                order: [:day, :month, :year],
+                html5: true,
+                placeholder: t('.date_at') %>
+    <%= f.submit "save", class: "actions btn btn-primary" %>
+  <% end %>
+  <hr>
+  <div class="col-md-3"><%= link_to t('.back'), lessons_path, class: "btn btn-primary" %></div>
+</div>
