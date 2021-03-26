@@ -10,7 +10,7 @@ RSpec.describe "Lessons", type: :request do
 
   describe 'GET #index' do
     before(:each) do
-      sign_in current_user # how to make sign_in for teacher?
+      sign_in current_user
       get lessons_path
     end
 
@@ -33,6 +33,12 @@ RSpec.describe "Lessons", type: :request do
         expect(response).to redirect_to root_path
       end
     end
+
+    context "not logged-in user" do
+      let(:current_user) { :not_user }
+      it { expect(response.status).to eq(302) }
+      it { expect(response).to redirect_to new_user_session_path }
+    end
   end
 
   describe 'GET #show' do
@@ -48,12 +54,12 @@ RSpec.describe "Lessons", type: :request do
         expect(response).to have_http_status(:success)
       end
 
-      it 'should show teacher' do
+      it 'should show lesson' do
         is_expected.to render_template :show
       end
     end
 
-    context 'not teacher' do
+    context 'no lesson' do
       let(:current_user) { teacher.user }
 
       it { expect { get lesson_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }

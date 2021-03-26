@@ -44,7 +44,8 @@ class LessonsController < ApplicationController
   def authenticate_teacher!
     return if current_user&.teacher
 
-    redirect_to root_path, alert: 'You are not allowed!'
+    redirect_to root_path, alert: 'You are not allowed!' if current_user
+    redirect_to new_user_session_path if !current_user
   end
 
   def set_lesson
