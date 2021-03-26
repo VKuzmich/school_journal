@@ -8,8 +8,8 @@
     <%= f.input :home_task, placeholder: t('.home_task') %>
     <%= f.input :description, placeholder: t('.description') %>
     <%= f.input :date_at, as: :date,
-                start_year: Time.now.year - 90,
-                end_year: Time.now.year - 8,
+                start_year: Time.now.year,
+                end_year: Time.now.year + 12,
                 order: [:day, :month, :year],
                 html5: true,
                 placeholder: t('.date_at') %>

@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_action :authenticate_teacher!, only: %i[create]
+  before_action :authenticate_teacher!
   before_action :set_lesson, only: %i[show edit update destroy]
 
   def index
@@ -42,7 +42,9 @@ class LessonsController < ApplicationController
   private
 
   def authenticate_teacher!
-    @teacher = current_user
+    return if current_user&.teacher
+
+    redirect_to root_path, alert: 'You are not allowed!'
   end
 
   def set_lesson
