@@ -1,4 +1,4 @@
-class LessonsController < ApplicationController
+class LessonsController < Admin::ApplicationController
   before_action :authenticate_teacher!
   before_action :set_lesson, only: %i[show edit update destroy]
 
@@ -42,7 +42,7 @@ class LessonsController < ApplicationController
   private
 
   def authenticate_teacher!
-    return if current_user&.teacher
+    return if current_user&.teacher.user
 
     redirect_to root_path, alert: 'You are not allowed!' if current_user
     redirect_to new_user_session_path if !current_user
