@@ -6,14 +6,6 @@ RSpec.describe "Lessons", type: :request do
   let!(:user) { create(:user) }
   let!(:teacher) { create(:teacher) }
   let!(:invalid_id) { '998' }
-  let(:wrong_attributes) {  { teacher_id: nil,
-                              grade_id: nil,
-                              subject_id: 123,
-                              home_task: nil,
-                              description: nil,
-                              date_at: nil
-  } }
-  let(:new_user) {create(:user)}
   let!(:new_lesson) { create(:lesson) }
 
   describe 'GET #index' do
@@ -167,42 +159,58 @@ RSpec.describe "Lessons", type: :request do
   end
 
   describe 'PATCH #update' do
-    before(:each) do
-      sign_in current_user
-      patch lesson_path(id: lesson.id), params: { lesson: { lesson_id: current_param, lesson: wrong_attributes } }
-      lesson.reload
-    end
-
     context 'with logged-in teacher' do
-      let(:updated_lesson) {create(:lesson)}
       let(:current_user) { teacher.user }
+      let(:updated_lesson) {create(:lesson)}
       let(:current_param) { updated_lesson.id }
 
       context 'valid attributes' do
+        before  do
+          sign_in current_user
+          patch lesson_path(id: lesson.id), params: { lesson: { lesson_id: current_param } }
+          lesson.reload
+        end
 
-        it { expect(response).to redirect_to lesson_path }
+        it { expect(response).to redirect_to lesson_url }
         it { expect(lesson.description).to be_present }
         it { expect(lesson.home_task).to be_present }
         it { expect(lesson.date_at).to be_present }
       end
 
-    #   context 'with invalid attributes' do
-    #     let(:current_param) { '' }
-    #
-    #     it 'does not change the lesson\'s attributes' do
-    #       binding.pry
-    #       expect(response).not_to be_redirect
-    #     end
-    #
-    #     it 're-renders the edit template' do
-    #       expect(response).to render_template :edit
-    #     end
-    #   end
+      context 'with invalid attributes' do
+        let(:current_param) { { teacher_id: teacher.id,
+                                grade_id: lesson.grade_id,
+                                subject_id: lesson.subject_id,
+                                home_task: nil,
+                                description: lesson.description,
+                                date_at: lesson.date_at } }
+
+        before  do
+          sign_in current_user
+          patch lesson_path(id: lesson.id),
+                params: { lesson: current_param  }
+          lesson.reload
+        end
+
+        it 'does not change the lesson\'s attributes' do
+          expect(response).not_to be_redirect
+        end
+
+        it 're-renders the edit template' do
+          expect(response).to render_template :edit
+        end
+      end
     end
 
     context 'with logged-in user' do
       let(:current_user) { user }
       let(:current_param) { new_lesson.id }
+
+      before  do
+        sign_in current_user
+        patch lesson_path(id: lesson.id), params: { lesson: { lesson_id: current_param } }
+        lesson.reload
+      end
 
       it 'redirects to root-path' do
         expect(response).to redirect_to root_path
@@ -241,4 +249,3 @@ RSpec.describe "Lessons", type: :request do
     end
   end
 end
-
