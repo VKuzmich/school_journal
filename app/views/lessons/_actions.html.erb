@@ -1,0 +1,3 @@
+<td><%= link_to t('.show'), lesson_path(lesson.id) %></td>
+<td><%= link_to t('.edit'), edit_lesson_path(lesson.id) %></td>
+<td><%= link_to t('.delete'), lesson_path(lesson.id), method: :delete, data: { confirm: t('.are_you_sure') } %></td>
