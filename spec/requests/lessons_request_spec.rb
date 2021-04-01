@@ -7,10 +7,11 @@ RSpec.describe "Lessons", type: :request do
   let!(:teacher) { create(:teacher) }
   let!(:invalid_id) { '998' }
   let!(:new_lesson) { create(:lesson) }
+  let!(:not_user) { nil }
 
   describe 'GET #index' do
     before(:each) do
-      sign_in current_user # how to make sign_in for teacher?
+      sign_in current_user
       get lessons_path
     end
 
@@ -31,6 +32,14 @@ RSpec.describe "Lessons", type: :request do
 
       it 'index status' do
         expect(response).to redirect_to root_path
+      end
+    end
+
+    context 'with logged-in user' do
+      let(:current_user) { :not_user }
+
+      it 'index status' do
+        expect(response).to redirect_to new_user_session_path
       end
     end
   end
