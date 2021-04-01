@@ -35,7 +35,7 @@ RSpec.describe "Lessons", type: :request do
       end
     end
 
-    context 'with logged-in user' do
+    context 'with not logged-in user' do
       let(:current_user) { :not_user }
 
       it 'index status' do
@@ -62,7 +62,7 @@ RSpec.describe "Lessons", type: :request do
       end
     end
 
-    context 'not teacher' do
+    context 'no lesson found' do
       let(:current_user) { teacher.user }
 
       it { expect { get lesson_path(id: invalid_id) }.to raise_error(ActiveRecord::RecordNotFound) }
