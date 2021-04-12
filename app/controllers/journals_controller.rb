@@ -5,5 +5,6 @@ class JournalsController < ApplicationController
   end
 
   def show
+    # @grade = Grade.find_by_id(:id)
   end
 end
