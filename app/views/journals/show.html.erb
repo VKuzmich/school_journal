@@ -10,14 +10,8 @@
     </tr>
   </thead>
   <tbody>
-    <%= render :partial => 'journals/journal'  %>
-    <%= render :partial => 'journals/journal'  %>
-    <%= render :partial => 'journals/journal'  %>
-    <%= render :partial => 'journals/journal'  %>
-    <%= render :partial => 'journals/journal'  %>
-    <%= render :partial => 'journals/journal'  %>
-    <%= render :partial => 'journals/journal'  %>
-    <%= render :partial => 'journals/journal'  %>
-    <%= render :partial => 'journals/journal'  %>
+  <% 9.times do %>
+    <%= render :partial => 'journals/lesson'  %>
+  <% end %>
   </tbody>
 </table>
