@@ -10,8 +10,8 @@
     </tr>
   </thead>
   <tbody>
-  <% 9.times do %>
-    <%= render :partial => 'journals/lesson'  %>
+  <% lessons_data.each do |lesson_data| %>
+    <%= render :partial => 'journals/lesson', locals: { lesson_data: lesson_data}  %>
   <% end %>
   </tbody>
 </table>
