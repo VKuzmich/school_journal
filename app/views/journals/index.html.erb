@@ -1,15 +1,19 @@
 <table class="table table-striped text-center">
   <thead class="thead-dark">
   <tr>
-    <th scope="col">Grades</th>
+    <th scope="col">Table</th>
   </tr>
   </thead>
 
   <tbody>
-  <% @grades.each do |grade| %>
-    <tr>
-      <td><%= grade.grade_group %></td>
-    </tr>
-  <% end %>
+    <% if current_user&.teacher %>
+      <%= render 'journals/list_of_grades' %>
+    <% elsif current_user&.parent %>
+      <%= render 'journals/list_of_parents_students' %>
+    <% elsif current_user&.student %>
+      <%= redirect_to journal_path %>
+    <% else %>
+      <% redirect_to root_path %>
+    <% end %>
   </tbody>
 </table>
