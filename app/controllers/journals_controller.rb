@@ -5,9 +5,9 @@ class JournalsController < ApplicationController
     elsif current_user&.parent
       @parent_students = Student.joins(:parent).where('parent_id': current_user)
     elsif current_user&.student
-      redirect_to journal_path
+      redirect_to journal_path(:id)
     else
-      redirect_to root_path
+      redirect_to new_user_session_path
     end
   end
 
