@@ -1,0 +1,14 @@
+<table>
+  <thead class="thead-dark">
+    <tr>
+      Students
+    </tr>
+  </thead>
+  <tbody>
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= link_to student.full_name, journal_path(id: student.grade_id)  %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

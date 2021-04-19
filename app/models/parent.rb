@@ -4,4 +4,9 @@ class Parent < ApplicationRecord
   has_many :students
 
   delegate :email, :full_name, :address, to: :user
+
+
+  def parent?
+    parent.present?
+  end
 end

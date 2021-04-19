@@ -9,4 +9,8 @@ class Teacher < ApplicationRecord
   end
 
   delegate :email, :full_name, :address, to: :user
+
+  def teacher?
+    teacher.present?
+  end
 end
