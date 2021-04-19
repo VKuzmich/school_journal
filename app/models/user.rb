@@ -33,4 +33,16 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def teacher?
+    teacher.present?
+  end
+
+  def parent?
+    parent.present?
+  end
+
+  def student?
+    student.present?
+  end
 end
