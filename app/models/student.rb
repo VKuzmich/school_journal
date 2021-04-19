@@ -6,8 +6,4 @@ class Student < ApplicationRecord
   delegate :email, :full_name, :address, to: :user
   delegate :grade_group, to: :grade
   validates :birthday, presence: true
-  
-  def student?
-    student.present?
-  end
 end
