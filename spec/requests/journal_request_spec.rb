@@ -5,8 +5,8 @@ RSpec.describe "Journals", type: :request do
     let(:user) { create(:user) }
     let(:teacher) { create(:teacher) }
     let(:parent) { create(:parent) }
-    let(:student) { create(:student, grade: grade.id) }
-    let(:grade) { create(:grade) }
+    let!(:student) { create(:student, grade: grade) }
+    let!(:grade) { create(:grade) }
 
     before :each do
       sign_in current_user
@@ -20,7 +20,7 @@ RSpec.describe "Journals", type: :request do
         expect(response).to have_http_status(:success)
       end
       it 'show list of classes' do
-        expect(response).to render_template :index
+        expect(response).to render_template("journals/list_of_grades", "layouts/application")
       end
     end
 
@@ -31,7 +31,7 @@ RSpec.describe "Journals", type: :request do
         expect(response).to have_http_status(:success)
       end
       it 'show list of parents students' do
-        expect(response).to render_template :index
+        expect(response).to render_template("journals/list_of_students", "layouts/application")
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe "Journals", type: :request do
         expect(response).to have_http_status(302)
       end
       it 'redirects to show page' do
-        expect(response).to redirect_to(journal_path(:id))
+        expect(response).to redirect_to(journal_path(id: student.grade.id))
       end
     end
 
