@@ -5,9 +5,10 @@ RSpec.describe "Journals", type: :request do
     let(:user) { create(:user) }
     let(:teacher) { create(:teacher) }
     let(:parent) { create(:parent) }
-    let(:student) { create(:student) }
+    let(:student) { create(:student, grade: grade.id) }
+    let(:grade) { create(:grade) }
 
-    before do
+    before :each do
       sign_in current_user
       get journals_path
     end

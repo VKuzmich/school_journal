@@ -1,16 +1,18 @@
 class JournalsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    if current_user&.teacher
-      @grades = Grade.order('number ASC, letter')
-    elsif current_user&.parent
-      @parent_students = Student.joins(:parent).where('parent_id': current_user)
-    elsif current_user&.student
-      redirect_to journal_path(:id)
-    else
-      redirect_to new_user_session_path
-    end
+    return redirect_to journal_path(id: student.grade.id) if current_user&.student
+    render :list_of_grades if current_user&.teacher && teacher?
+    render :list_of_students if current_user&.parent
   end
 
   def show
+  end
+
+  private
+
+  def teacher?
+    teacher.present?
   end
 end
