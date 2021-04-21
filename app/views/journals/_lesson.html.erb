@@ -1,6 +1,9 @@
 <tr>
   <td><%= lesson_data(number, dates).html_safe %></td>
-  <% 7.times do |key| %>
-    <td><% @lessons.pluck(:date_at) %></td>
+  <% 7.times do |number| %>
+    <td><% if lessons.pluck(:date_at)  && lessons.map(&:number) == [number] %>
+            <%= lessons.map(&:subject).map(&:name)[0] %>
+        <% end %>
+    </td>
   <% end %>
 </tr>
