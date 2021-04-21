@@ -1,10 +1,6 @@
 <tr>
-  <td><%= lesson_data.html_safe %></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td><%= lesson_data(number, dates).html_safe %></td>
+  <% 7.times do |key| %>
+    <td><% lessons.pluck(:date_at) %></td>
+  <% end %>
 </tr>

@@ -8,6 +8,7 @@ class JournalsController < ApplicationController
   end
 
   def show
+    @lessons = Lesson.all
   end
 
   private
@@ -20,5 +21,9 @@ class JournalsController < ApplicationController
   def render_list_of_students
     @students = current_user.parent.students
     render :list_of_students
+  end
+
+  def lists_of_lessons
+    @lessons = Lesson.all
   end
 end

@@ -10,8 +10,9 @@
     </tr>
   </thead>
   <tbody>
-  <% lessons_data.each do |lesson_data| %>
-    <%= render :partial => 'journals/lesson', locals: { lesson_data: lesson_data}  %>
+
+  <% LESSONS.each do |number, dates| %>
+    <%= render :partial => 'journals/lesson', locals: { number: number, dates: dates, lessons: @lessons.where(number: number) }  %>
   <% end %>
   </tbody>
 </table>

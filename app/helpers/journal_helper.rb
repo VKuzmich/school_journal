@@ -16,7 +16,7 @@ module JournalHelper
     end
   end
 
-  def lessons_data
-    LESSONS.map { |number, dates| "#{number} Lesson <br/> #{dates[:start_time]} - #{dates[:end_time]}" }
+  def lesson_data(number, dates)
+    "#{number} Lesson <br/> #{dates[:start_time]} - #{dates[:end_time]}"
   end
 end
