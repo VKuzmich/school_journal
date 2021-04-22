@@ -9,6 +9,7 @@ module JournalHelper
               8=> { start_time: '15:00', end_time: '15:45'},
               9=> { start_time: '16:00', end_time: '16:45'}
   }
+  RAWS_NUMBER = 7
 
   def time_range
     (Date.current.beginning_of_week..Date.current.end_of_week).map do |date|
@@ -16,7 +17,14 @@ module JournalHelper
     end
   end
 
+  def lessons_lists(lessons, number)
+    lessons.select { |lesson| lesson.date_at.wday == number }
+           .map { |lesson| lesson.subject.name }
+           .join('<br />')
+           .html_safe
+  end
+
   def lesson_data(number, dates)
-    "#{number} Lesson <br/> #{dates[:start_time]} - #{dates[:end_time]}"
+    "#{number} Lesson <br/> #{dates[:start_time]} - #{dates[:end_time]}".html_safe
   end
 end
