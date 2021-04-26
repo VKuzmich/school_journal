@@ -18,7 +18,7 @@ module JournalHelper
   end
 
   def lessons_lists(lessons, number)
-    lessons.select { |lesson| lesson.date_at.wday == number }
+    lessons.select { |lesson| (lesson.date_at.wday-1) == number }
            .map { |lesson| lesson.subject.name }
            .join('<br />')
            .html_safe
