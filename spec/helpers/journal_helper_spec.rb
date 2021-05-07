@@ -8,8 +8,8 @@ RSpec.describe JournalHelper do
     let(:end_of_week) { Date.current.end_of_week }
 
     it "is between the time range" do
-      range = beginning_of_week..end_of_week
-      expect(range).to cover Date.today
+      range = (beginning_of_week..end_of_week).map {|date| date.strftime("%A %d/%m/%Y") }
+      expect(helper.time_range).to eq(range)
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe JournalHelper do
     it 'gives list of lessons' do
       list_of_lessons = lessons_data.select { |lesson| (lesson.date_at.wday-1) == number }
       list_of_lessons =list_of_lessons.map { |lesson| lesson.subject.name }.join('<br />').html_safe
-      expect(list_of_lessons).to eq("Music<br />Physics<br />Math" )
+      expect(helper.lessons_lists(lessons_data, number)).to eq(list_of_lessons )
     end
   end
 end

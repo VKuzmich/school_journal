@@ -8,7 +8,8 @@ class JournalsController < ApplicationController
   end
 
   def show
-    @lessons = Lesson.where(date_at: Date.current.beginning_of_week..Date.current.end_of_week)
+    @lessons = Lesson.where(date_at:  Date.current.beginning_of_week..Date.current.end_of_week,
+                            grade_id: current_user.student.grade.id)
   end
 
   private
