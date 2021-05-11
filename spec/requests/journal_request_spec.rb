@@ -70,27 +70,28 @@ RSpec.describe "Journals", type: :request do
       get journal_path(id: grade.id)
     end
 
-    # context 'with logged-in teacher' do
-    #   let(:current_user) { teacher.user }
-    #
-    #   it 'show status success' do
-    #     expect(response).to have_http_status(:success)
-    #   end
-    #   it 'show list of classes' do
-    #     expect(response).to render_template("journals/show")
-    #   end
-    # end
-    #
-    # context 'with logged-in parent' do
-    #   let(:current_user) { parent.user }
-    #
-    #   it 'status success' do
-    #     expect(response).to have_http_status(:success)
-    #   end
-    #   it 'show list of parents students' do
-    #     expect(response).to render_template("journals/show")
-    #   end
-    # end
+    context 'with logged-in teacher' do
+      let(:current_user) { teacher.user }
+      let!(:lessons) { create(:lesson, 3, teacher_id: teacher, date_at: 'Tue, 11 May 2021') }
+
+      it 'show status success' do
+        expect(response).to have_http_status(:success)
+      end
+      it 'show list of classes' do
+        expect(response).to render_template("journals/show")
+      end
+    end
+
+    context 'with logged-in parent' do
+      let(:current_user) { parent.user }
+
+      it 'status success' do
+        expect(response).to have_http_status(:success)
+      end
+      it 'show list of parents students' do
+        expect(response).to render_template("journals/show")
+      end
+    end
 
     context 'with logged-in student' do
       let(:current_user) { student.user }

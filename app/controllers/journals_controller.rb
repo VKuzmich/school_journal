@@ -8,8 +8,10 @@ class JournalsController < ApplicationController
   end
 
   def show
-    @lessons = Lesson.where(date_at:  Date.current.beginning_of_week..Date.current.end_of_week,
-                            grade_id: current_user.student.grade.id)
+    # binding.pry
+    return @lessons = Lesson.where(date_at:  Date.current.beginning_of_week..Date.current.end_of_week, grade_id: current_user.student.grade.id) if current_user.student
+    return @lessons = Lesson.where(date_at:  Date.current.beginning_of_week..Date.current.end_of_week, grade_id: current_user.teacher.lessons(&:grade_id)) if current_user.teacher
+    return @lessons = Lesson.where(date_at:  Date.current.beginning_of_week..Date.current.end_of_week, grade_id: current_user.parent.students(&:grade_id)) if current_user.parent
   end
 
   private
