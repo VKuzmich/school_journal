@@ -72,13 +72,27 @@ RSpec.describe "Journals", type: :request do
 
     context 'with logged-in teacher' do
       let(:current_user) { teacher.user }
-      let!(:lessons) { create(:lesson, 3, teacher_id: teacher, date_at: 'Tue, 11 May 2021') }
+
+      let!(:lessons) { create_list(:lesson, 3, date_at: 'Tue, 12 May 2021') }
+      let!(:lesson1) { create(:lesson, teacher_id: teacher.id, date_at: 'Tue, 12 May 2021') }
+      let!(:lesson2) { create(:lesson, teacher_id: teacher.id, date_at: 'Tue, 12 May 2021') }
+      let!(:lesson3) { create(:lesson, teacher_id: teacher.id, date_at: 'Tue, 12 May 2021') }
+      let(:lessons_dates) do
+        lessons_dates = []
+        lessons_dates << lesson1.date_at
+        lessons_dates << lesson2.date_at
+        lessons_dates << lesson3.date_at
+      end
 
       it 'show status success' do
         expect(response).to have_http_status(:success)
       end
-      it 'show list of classes' do
+      it 'render template show' do
         expect(response).to render_template("journals/show")
+      end
+      it 'show list of classes' do
+        teachers_dates = lessons.map(&:date_at)
+        expect(teachers_dates).to eq(lessons_dates)
       end
     end
 
