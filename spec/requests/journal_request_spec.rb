@@ -83,7 +83,7 @@ RSpec.describe "Journals", type: :request do
       end
       it 'show list of classes' do
         teachers_subjects = lessons.map(&:subject).map(&:name)
-        expect(JSON.parse(response.body)).to include(teachers_subjects)
+        expect(response.body).to include(teachers_subjects)
       end
     end
 
