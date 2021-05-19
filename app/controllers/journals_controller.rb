@@ -8,9 +8,14 @@ class JournalsController < ApplicationController
   end
 
   def show
+    @lessons = Lesson.where(date_at: date_range, grade_id: params[:id])
   end
 
   private
+
+  def date_range
+    Date.current.beginning_of_week..Date.current.end_of_week
+  end
 
   def render_list_of_grades
     @grades = Grade.all

@@ -115,7 +115,8 @@ RSpec.describe "Lessons", type: :request do
                                                  subject_id: subject.id,
                                                  home_task: Faker::Lorem.sentence(word_count: 3),
                                                  description: Faker::Lorem.sentence(word_count: 5),
-                                                 date_at: Faker::Date.forward
+                                                 date_at: Faker::Date.forward,
+                                                 number: rand(1..9)
           } }
         end.to change(Lesson, :count).by(1) }
 
@@ -126,7 +127,8 @@ RSpec.describe "Lessons", type: :request do
                                                   subject_id: subject.id,
                                                   home_task: Faker::Lorem.sentence(word_count: 3),
                                                   description: Faker::Lorem.sentence(word_count: 5),
-                                                  date_at: Faker::Date.forward
+                                                  date_at: Faker::Date.forward,
+                                                  number: rand(1..9)
                                                 } })
             .to redirect_to lessons_path
         end
@@ -140,7 +142,8 @@ RSpec.describe "Lessons", type: :request do
                                                  subject_id: 888,
                                                  home_task: Faker::Lorem.sentence(word_count: 3),
                                                  description: Faker::Lorem.sentence(word_count: 5),
-                                                 date_at: Faker::Date.forward
+                                                 date_at: Faker::Date.forward,
+                                                 number: rand(1..9)
           } }
         end
 
