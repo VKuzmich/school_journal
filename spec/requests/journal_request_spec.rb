@@ -64,6 +64,7 @@ RSpec.describe "Journals", type: :request do
     let(:parent) { create(:parent) }
     let!(:student) { create(:student, grade: grade) }
     let!(:grade) { create(:grade) }
+    let!(:lessons) { create_list(:lesson, 3, grade_id: grade.id) }
 
     before :each do
       sign_in current_user
@@ -72,8 +73,6 @@ RSpec.describe "Journals", type: :request do
 
     context 'with logged-in teacher' do
       let(:current_user) { teacher.user }
-      let(:date_at) { rand(Date.current.beginning_of_week..Date.current.end_of_week)}
-      let!(:lessons) { create_list(:lesson, 3, teacher_id: teacher.id, date_at: date_at) }
 
       it 'show status success' do
         expect(response).to have_http_status(:success)
@@ -81,9 +80,8 @@ RSpec.describe "Journals", type: :request do
       it 'render template show' do
         expect(response).to render_template("journals/show")
       end
-      it 'show list of classes' do
-        teachers_subjects = lessons.map(&:subject).map(&:name)
-        expect(response.body).to include(teachers_subjects)
+      it 'render the list of lessons for teacher' do
+        expect(assigns(:lessons)).to eq(lessons)
       end
     end
 
@@ -96,6 +94,9 @@ RSpec.describe "Journals", type: :request do
       it 'show list of parents students' do
         expect(response).to render_template("journals/show")
       end
+      it 'render the list of lessons for parents' do
+        expect(assigns(:lessons)).to eq(lessons)
+      end
     end
 
     context 'with logged-in student' do
@@ -106,6 +107,9 @@ RSpec.describe "Journals", type: :request do
       end
       it 'redirects to show page' do
         expect(response).to render_template("journals/show")
+      end
+      it 'render the list of lessons for students' do
+        expect(assigns(:lessons)).to eq(lessons)
       end
     end
 
