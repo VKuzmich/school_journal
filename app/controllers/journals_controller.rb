@@ -9,6 +9,16 @@ class JournalsController < ApplicationController
 
   def show
     @lessons = Lesson.where(date_at: date_range, grade_id: params[:id])
+    respond_to do |format|
+      format.html
+      format.js   { render :layout => false }
+      format.json { render :json => {:message => "success"} }
+    end
+
+  end
+
+  def teacher_add_lessons
+    @teacher = current_user&.teacher
   end
 
   private
