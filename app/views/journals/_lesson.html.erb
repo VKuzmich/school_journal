@@ -2,7 +2,7 @@
   <td><%= lesson_data(number, dates) %></td>
   <% JournalHelper::RAWS_NUMBER.times do |number| %>
     <td><%= lessons_lists(lessons, number) %>
-      <%= button_to "Add subject", @subjects, onclick: "add_subjects", remote: true, class: "btn add_subjects" %>
+      <%= button_to "Add subject", remote: true, class: "btn add_subjects" %>
     </td>
   <% end %>
 </tr>

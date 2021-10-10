@@ -9,6 +9,7 @@ class JournalsController < ApplicationController
 
   def show
     @lessons = Lesson.where(date_at: date_range, grade_id: params[:id])
+    @subjects = Subject.all.map(&:name)
     respond_to do |format|
       format.html
       format.js   { render :layout => false }
