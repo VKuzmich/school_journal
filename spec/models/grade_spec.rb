@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: grades
+#
+#  id         :bigint           not null, primary key
+#  number     :integer
+#  letter     :string(1)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Grade, type: :model do
