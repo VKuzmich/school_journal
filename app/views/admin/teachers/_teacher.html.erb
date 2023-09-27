@@ -1,0 +1,9 @@
+  <tr>
+    <td><%= teacher.full_name %></td>
+    <td><%= teacher.address %></td>
+    <td><%= teacher.email %></td>
+    <td><%= teacher.subject_name %></td>
+    <td><%= teacher.created_at.strftime("%B %d, %Y") %></td>
+    <%= render partial: 'admin/teachers/actions', locals: {teacher: teacher} %>
+  </tr>
+

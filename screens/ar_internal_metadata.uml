@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.ar_internal_metadata</OriginalElement>
+  <nodes>
+    <node x="93.33333333333337" y="369.0">a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.teachers</node>
+    <node x="505.5583333333334" y="584.0">a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.students</node>
+    <node x="795.3333333333334" y="0.0">a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.ar_internal_metadata</node>
+    <node x="458.89166666666677" y="0.0">a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.users</node>
+    <node x="0.0" y="99.0">a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.subjects</node>
+    <node x="315.83333333333337" y="843.0">a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.rates</node>
+    <node x="107.31666666666672" y="562.0">a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.lessons</node>
+    <node x="517.3333333333334" y="380.0">a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.parents</node>
+    <node x="0.0" y="1053.0">a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.schema_migrations</node>
+    <node x="305.33333333333337" y="369.0">a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.grades</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.lessons" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.subjects">
+      <point x="-64.0" y="-115.5" />
+      <point x="139.31666666666672" y="537.0" />
+      <point x="66.75" y="537.0" />
+      <point x="66.75" y="344.0" />
+      <point x="48.0" y="344.0" />
+      <point x="-48.0" y="60.5" />
+    </edge>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.students" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.parents">
+      <point x="0.0" y="-93.5" />
+      <point x="601.5583333333334" y="537.0" />
+      <point x="613.3333333333334" y="537.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.rates" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.students">
+      <point x="48.0" y="-82.5" />
+      <point x="459.83333333333337" y="818.0" />
+      <point x="601.5583333333334" y="818.0" />
+      <point x="0.0" y="93.5" />
+    </edge>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.lessons" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.teachers">
+      <point x="0.0" y="-115.5" />
+      <point x="203.31666666666672" y="537.0" />
+      <point x="189.33333333333337" y="537.0" />
+      <point x="0.0" y="71.5" />
+    </edge>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.rates" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.lessons">
+      <point x="-48.0" y="-82.5" />
+      <point x="363.83333333333337" y="818.0" />
+      <point x="203.31666666666672" y="818.0" />
+      <point x="0.0" y="115.5" />
+    </edge>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.teachers" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.users">
+      <point x="48.0" y="-71.5" />
+      <point x="237.33333333333337" y="344.0" />
+      <point x="502.5583333333334" y="344.0" />
+      <point x="-87.33333333333331" y="159.5" />
+    </edge>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.teachers" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.subjects">
+      <point x="-48.0" y="-71.5" />
+      <point x="141.33333333333337" y="344.0" />
+      <point x="144.0" y="344.0" />
+      <point x="48.0" y="60.5" />
+    </edge>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.students" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.users">
+      <point x="64.0" y="-93.5" />
+      <point x="665.5583333333334" y="537.0" />
+      <point x="719.8333333333334" y="537.0" />
+      <point x="719.8333333333334" y="344.0" />
+      <point x="677.225" y="344.0" />
+      <point x="87.33333333333329" y="159.5" />
+    </edge>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.students" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.grades">
+      <point x="-64.0" y="-93.5" />
+      <point x="537.5583333333334" y="537.0" />
+      <point x="449.33333333333337" y="537.0" />
+      <point x="48.0" y="71.5" />
+    </edge>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.lessons" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.grades">
+      <point x="64.0" y="-115.5" />
+      <point x="267.3166666666667" y="537.0" />
+      <point x="353.33333333333337" y="537.0" />
+      <point x="-48.0" y="71.5" />
+    </edge>
+    <edge source="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.parents" target="a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.users">
+      <point x="0.0" y="-60.5" />
+      <point x="613.3333333333334" y="344.0" />
+      <point x="589.8916666666668" y="344.0" />
+      <point x="0.0" y="159.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.912866015971606" x="494.0000000000001" y="553.5" />
+  <SelectedNodes>
+    <node>a54f3c7e-b47b-44b1-966f-6d3c958c4b53.TABLE:school_journal_test.public.teachers</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

@@ -1,0 +1,10 @@
+  <tr>
+    <td><%= lesson.teacher.full_name %></td>
+    <td><%= lesson.subject.name %></td>
+    <td><%= lesson.grade.grade_group %></td>
+    <td><%= lesson.home_task %></td>
+    <td><%= lesson.description %></td>
+    <td><%= lesson.date_at %></td>
+    <td><%= lesson.created_at.strftime("%B %d, %Y") %></td>
+    <%= render partial: 'lessons/actions', locals: {lesson: lesson} %>
+  </tr>

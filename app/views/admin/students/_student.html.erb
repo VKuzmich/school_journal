@@ -1,0 +1,10 @@
+  <tr>
+    <td><%= student.full_name %></td>
+    <td><%= student.address %></td>
+    <td><%= student.email %></td>
+    <td><%= student.birthday %></td>
+    <td><%= student.grade_group %></td>
+    <td><%= student.parent.full_name %></td>
+    <td><%= student.created_at.strftime("%B %d, %Y") %></td>
+    <%= render partial: 'admin/students/actions', locals: {student: student} %>
+  </tr>

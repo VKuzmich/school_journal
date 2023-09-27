@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :bigint           not null, primary key
+#  address                :string
+#  admin                  :boolean          default(FALSE)
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  first_name             :string
+#  last_name              :string
+#  phone                  :string(17)
+#  remember_created_at    :datetime
+#  reset_password_sent_at :datetime
+#  reset_password_token   :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -8,9 +31,6 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:last_name) }
     it { is_expected.to validate_presence_of(:address) }
     it { is_expected.to validate_presence_of(:phone) }
-
-    it { should validate_uniqueness_of(:first_name).case_insensitive }
-    it { should validate_uniqueness_of(:last_name).case_insensitive }
 
     it { is_expected.to validate_length_of(:first_name).is_at_least(3).is_at_most(40) }
     it { is_expected.to validate_length_of(:last_name).is_at_least(3).is_at_most(40) }
@@ -38,5 +58,12 @@ RSpec.describe User, type: :model do
     it { is_expected.not_to allow_value('+38(023)-122-222').for(:phone) }
     it { is_expected.not_to allow_value('+38(023)-12-2222').for(:phone) }
     it { is_expected.not_to allow_value('+38(023)-1222222').for(:phone) }
+  end
+
+  describe '#full_name' do
+    it "has a full name" do
+      person = create(:user, first_name: "Svenson", last_name: "Fiord")
+      expect(person.full_name).to eq("Svenson Fiord")
+    end
   end
 end

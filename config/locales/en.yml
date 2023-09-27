@@ -36,6 +36,214 @@ en:
       login: 'Login'
       logout: 'Logout'
 
+  lessons:
+    form:
+      lessons_title: "Lesson"
+      date_at: "Data"
+      home_task: 'Home Task'
+      description: "Description"
+      back: 'Back'
+
+    lesson:
+      are_you_sure: 'Are you sure?'
+    show:
+      are_you_sure: 'Are you sure?'
+      lesson: 'Lesson'
+      teacher: 'Teacher'
+      subject: "Subject"
+      grade: "Grade"
+      home_task: "Home Task"
+      description: "Description"
+      date_at: "Data"
+      time: 'Time'
+      actions: 'Actions'
+      edit: 'Edit'
+      delete: 'Delete'
+      back: 'Back'
+    index:
+      lessons: 'Lessons'
+      add_new_lesson: 'Add New Lesson'
+      teacher: 'Teacher'
+      subject: "Subject"
+      home_task: "Home Task"
+      description: "Description"
+      date_at: "Data"
+      grade: "Grade"
+      time: 'Time'
+      actions: 'Actions'
+      students: 'Students'
+    actions:
+      show: 'Show'
+      edit: 'Edit'
+      delete: 'Delete'
+      are_you_sure: 'Are you sure?'
+
+  admin:
+    subjects:
+      form:
+        subjects_title: "Subjects"
+        name: 'Name'
+        back: 'Back'
+      subject:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        subject: 'Subject'
+        name: 'Name'
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        add_new_subject: 'Add New Subject'
+        name: 'Name'
+        time: 'Time'
+        actions: 'Actions'
+        subjects: 'Subjects'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'
+
+    teachers:
+      form:
+        teachers_title: "Teacher"
+        name: 'Name'
+        back: 'Back'
+      teacher:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        teacher: 'Teacher'
+        full_name: 'Full Name'
+        address: "Address"
+        email: "Email"
+        subject: "Subject"
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        add_new_teacher: 'Add New Teacher'
+        full_name: 'Full Name'
+        address: "Address"
+        email: "Email"
+        subject: "Subject"
+        time: 'Time'
+        actions: 'Actions'
+        teachers: 'Teachers'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'
+
+    students:
+      form:
+        students_title: "Student"
+        birthday: "Birthday"
+        name: 'Name'
+        back: 'Back'
+      student:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        student: 'Student'
+        full_name: 'Full Name'
+        address: "Address"
+        email: "Email"
+        birthday: "Birthday"
+        parent: "Parent"
+        grade: "Grade"
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        add_new_student: 'Add New Student'
+        full_name: 'Full Name'
+        address: "Address"
+        email: "Email"
+        birthday: "Birthday"
+        parent: "Parent"
+        grade: "Grade"
+        time: 'Time'
+        actions: 'Actions'
+        students: 'Students'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'
+
+    parents:
+      form:
+        parents_title: "Parent"
+        name: 'Name'
+        back: 'Back'
+      parent:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        parent: 'Parent'
+        full_name: 'Full Name'
+        address: "Address"
+        email: "Email"
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        add_new_parent: 'Add New Parent'
+        full_name: 'Full Name'
+        address: "Address"
+        email: "Email"
+        time: 'Time'
+        actions: 'Actions'
+        parents: 'Parents'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'
+
+    grades:
+      form:
+        grades_title: "Grades"
+        number: 'Number'
+        letter: 'Letter'
+        back: 'Back'
+      grade:
+        are_you_sure: 'Are you sure?'
+      show:
+        are_you_sure: 'Are you sure?'
+        grade: 'Grade'
+        number: 'Number'
+        letter: 'Letter'
+        time: 'Time'
+        actions: 'Actions'
+        edit: 'Edit'
+        delete: 'Delete'
+        back: 'Back'
+      index:
+        grades_title: "Grades"
+        add_new_grade: 'Add New Grade'
+        number: 'Number'
+        letter: 'Letter'
+        time: 'Time'
+        actions: 'Actions'
+        subjects: 'Subjects'
+      actions:
+        show: 'Show'
+        edit: 'Edit'
+        delete: 'Delete'
+        are_you_sure: 'Are you sure?'
+
   activerecord:
     errors:
       models:

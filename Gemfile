@@ -30,12 +30,24 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'simple_form', '~> 5.1'
+gem 'factory_bot_rails'
+gem 'rails-controller-testing'
+gem 'faker', '~> 2.16'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'annotate'
+  gem 'pry', '~> 0.13.1'
   gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
   gem 'shoulda-matchers', '~> 4.0'
+  gem 'database_cleaner-active_record'
+  gem 'rails_db'
+  gem 'rubocop', '~> 1.10', require: false
+  gem 'rubocop-rspec', '~> 2.2'
+  gem 'rubocop-performance', '~> 1.9', '>= 1.9.2'
+  gem 'rubocop-rails', '~> 2.9', '>= 2.9.1'
+  gem 'simplecov', require: false
 end
 
 group :development do

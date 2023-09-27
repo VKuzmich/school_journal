@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_164926) do
+ActiveRecord::Schema.define(version: 2021_04_21_070609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "grades", force: :cascade do |t|
     t.integer "number"
-    t.string "group", limit: 1
+    t.string "letter", limit: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_164926) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "teacher_id", null: false
+    t.integer "number"
     t.index ["grade_id"], name: "index_lessons_on_grade_id"
     t.index ["subject_id"], name: "index_lessons_on_subject_id"
     t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_164926) do
     t.string "last_name"
     t.string "phone", limit: 17
     t.string "address"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
