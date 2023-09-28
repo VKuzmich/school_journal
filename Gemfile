@@ -29,10 +29,16 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise', '~> 4.7', '>= 4.7.3'
+gem "dry-rails"
+gem "dry-matcher"
+gem "dry-types"
+gem "dry-validation"
 gem 'simple_form', '~> 5.1'
 gem 'factory_bot_rails'
 gem 'rails-controller-testing'
 gem 'faker', '~> 2.16'
+gem 'rswag-api'
+gem 'rswag-ui'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,6 +49,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 4.0'
   gem 'database_cleaner-active_record'
   gem 'rails_db'
+  gem 'rswag-specs'
   gem 'rubocop', '~> 1.10', require: false
   gem 'rubocop-rspec', '~> 2.2'
   gem 'rubocop-performance', '~> 1.9', '>= 1.9.2'
